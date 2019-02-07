@@ -1,0 +1,5 @@
+module CSDL2 [system] {
+  header "shims.h"
+  link "SDL2"
+  export *
+}
