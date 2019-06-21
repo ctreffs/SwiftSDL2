@@ -1,4 +1,4 @@
-module CSDL2 [system] {
+module CSDL2 [system][extern_c] {
   header "shims.h"
   link "SDL2"
   export *
