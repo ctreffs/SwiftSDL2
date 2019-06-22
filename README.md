@@ -51,7 +51,7 @@ To install SDL2 for use in a Swift Package Manager powered tool or application, 
 Add the following to you `Package.swift` file.
 
 ```swift
-.package(url: "https://github.com/ctreffs/CSDL2", from: "1.0.0")
+.package(url: "https://github.com/ctreffs/CSDL2", from: "1.1.0")
 ```
 You need to add `CSDL2` as a dependency to your desired targets.
 
@@ -77,7 +77,7 @@ import CSDL2
 
 ```
 
-**HINT:** to use SDL2 on iOS or tvOS it seams to be neccessary that you embed CSL2 into the application rather than only linking the framework.
+**HINT:** to use SDL2 on iOS or tvOS it seems to be neccessary that you embed CSL2 into the application rather than only linking the framework.
 
 
 ## 🤘 Minimal Metal example application
