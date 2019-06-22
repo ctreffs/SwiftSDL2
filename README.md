@@ -1,7 +1,7 @@
 # <img src="https://www.libsdl.org/media/SDL_logo.png" height="20" max-width="90%" alt="SDL2" /> SDL2 Swift Package (CSDL2)
 
 <p align="left">
-    <img src="https://img.shields.io/badge/Swift-4.2+-brightgreen.svg" />
+    <img src="https://img.shields.io/badge/Swift-5+-brightgreen.svg" />
     <a href="https://swift.org/package-manager">
         <img src="https://img.shields.io/badge/spm-compatible-brightgreen.svg?style=flat" alt="Swift Package Manager" />
     </a>
@@ -41,7 +41,7 @@ brew list --versions sdl2
 
 #### Swift requirements
 
-This package requires [Swift 4.2](https://swift.org/blog/swift-4-2-released/) or higher and is intended to be used with the [Swift Package Manager (SPM)](https://swift.org/package-manager/).
+This package requires [Swift 5](https://swift.org/download/) or higher and is intended to be used with the [Swift Package Manager (SPM)](https://swift.org/package-manager/).
 
 ## 📦 Use package
 
