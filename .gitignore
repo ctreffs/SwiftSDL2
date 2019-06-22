@@ -67,6 +67,7 @@
 .ruby-version
 .rvmrc
 .Spotlight-V100
+.swiftpm/
 .TemporaryItems
 .Trashes
 .VolumeIcon.icns
