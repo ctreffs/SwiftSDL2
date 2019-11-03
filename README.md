@@ -1,7 +1,7 @@
 
 # <img src="https://www.libsdl.org/media/SDL_logo.png" height="20" max-width="90%" alt="SDL2" /> Swift SDL2
 
-[![Build Status](https://travis-ci.com/ctreffs/CSDL2.svg?branch=master)](https://travis-ci.com/ctreffs/CSDL2)
+[![Build Status](https://travis-ci.com/ctreffs/SwiftSDL2.svg?branch=master)](https://travis-ci.com/ctreffs/SwiftSDL2)
 [![license](https://img.shields.io/badge/license-zlib-brightgreen.svg)](LICENSE)
 [![swift version](https://img.shields.io/badge/swift-5.0+-brightgreen.svg)](https://swift.org/download)
 [![platforms](https://img.shields.io/badge/platforms-%20macOS%20|%20iOS%20|%20tvOS-brightgreen.svg)](#)
@@ -62,7 +62,7 @@ or
 apt-get install libsdl2-dev
 ```
 
-depending on you platform.
+depending on your platform.
 
 ## 📝 Code Example
 
