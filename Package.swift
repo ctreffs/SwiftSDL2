@@ -16,8 +16,9 @@ let package = Package(
                 .apt(["libsdl2-dev"])
             ]),
         .testTarget(name: "CSDL2Tests", dependencies: ["CSDL2"])
-    
     ]
 )
 
-// linux: -D_REENTRANT -I/usr/include/SDL2 -lSDL2
+// `pkg-config --libs --cflags sdl2`
+// macOS: -D_THREAD_SAFE -I/usr/local/include/SDL2 -L/usr/local/lib -lSDL2
+// Linux: -D_REENTRANT -I/usr/include/SDL2 -lSDL2
