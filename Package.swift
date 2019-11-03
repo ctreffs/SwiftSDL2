@@ -13,9 +13,11 @@ let package = Package(
             pkgConfig: "SDL2",
             providers: [
                 .brew(["sdl2"]),
-                .apt(["libsdl2-dev", "libsdl2-2.0"])
+                .apt(["libsdl2-dev"])
             ]),
         .testTarget(name: "CSDL2Tests", dependencies: ["CSDL2"])
     
     ]
 )
+
+// linux: -D_REENTRANT -I/usr/include/SDL2 -lSDL2
