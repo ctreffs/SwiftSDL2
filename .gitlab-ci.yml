@@ -5,8 +5,9 @@ before_script:
   - echo -e "machine gitlab.com\nlogin gitlab-ci-token\npassword ${CI_JOB_TOKEN}" > ~/.netrc
   - apt-get update -qq 
   - apt-get install -y -qq pkg-config libsdl2-dev libsdl2-2.0
-  - pkg-config --cflags --libs sdl2
-  
+  #- pkg-config --cflags --libs sdl2
+  - ls -la /usr/include/SDL2
+
 stages: 
   - test
   - build_release
