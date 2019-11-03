@@ -10,11 +10,12 @@ let package = Package(
     targets: [
         .systemLibrary(
             name: "CSDL2",
-            path: "Sources/CSDL2",
-            pkgConfig: "sdl2",
+            pkgConfig: "SDL2",
             providers: [
                 .brew(["sdl2"]),
                 .apt(["libsdl2-dev", "ibsdl2-2.0"])
-            ])
+            ]),
+        .testTarget(name: "CSDL2Tests", dependencies: ["CSDL2"])
+    
     ]
 )
