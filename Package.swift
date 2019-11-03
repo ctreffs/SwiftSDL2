@@ -13,7 +13,7 @@ let package = Package(
             pkgConfig: "SDL2",
             providers: [
                 .brew(["sdl2"]),
-                .apt(["libsdl2-dev", "ibsdl2-2.0"])
+                .apt(["libsdl2-dev", "libsdl2-2.0"])
             ]),
         .testTarget(name: "CSDL2Tests", dependencies: ["CSDL2"])
     
