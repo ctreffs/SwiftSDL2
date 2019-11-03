@@ -9,6 +9,7 @@
      <img src="https://img.shields.io/badge/platforms-macOS%20|%20iOS%20|%20tvOS%20|%20linux-brightgreen.svg?style=flat" alt="macOS | iOS | tvOS | linux" />
 </p>
 
+[![Build Status](https://travis-ci.com/ctreffs/CSDL2.svg?branch=master)](https://travis-ci.com/ctreffs/CSDL2)
 
 This package provides the [Simple DirectMedia Layer 2](https://www.libsdl.org) (SDL2) library as a Swift system package.
 

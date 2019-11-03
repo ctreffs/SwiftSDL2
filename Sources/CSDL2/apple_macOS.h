@@ -1,5 +1,5 @@
 #include "/usr/local/include/SDL2/SDL.h"
-#include "/usr/local/include/SDL2/SDL2_framerate.h"
+//#include "/usr/local/include/SDL2/SDL2_framerate.h"
 #include "/usr/local/include/SDL2/SDL2_gfxPrimitives.h"
 #include "/usr/local/include/SDL2/SDL2_imageFilter.h"
 #include "/usr/local/include/SDL2/SDL2_rotozoom.h"
