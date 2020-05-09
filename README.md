@@ -3,7 +3,7 @@
 
 [![Build Status](https://travis-ci.com/ctreffs/SwiftSDL2.svg?branch=master)](https://travis-ci.com/ctreffs/SwiftSDL2)
 [![license](https://img.shields.io/badge/license-zlib-brightgreen.svg)](LICENSE)
-[![swift version](https://img.shields.io/badge/swift-5.0+-brightgreen.svg)](https://swift.org/download)
+[![swift version](https://img.shields.io/badge/swift-5.1+-brightgreen.svg)](https://swift.org/download)
 [![platforms](https://img.shields.io/badge/platforms-%20macOS%20|%20iOS%20|%20tvOS-brightgreen.svg)](#)
 [![platforms](https://img.shields.io/badge/platforms-linux-brightgreen.svg)](#)
 
@@ -27,19 +27,19 @@ These instructions will get your copy of the project up and running on your loca
 
 ### 💻 Installing
 
-Swift SDL2 is available for all platforms that support [Swift 5.0](https://swift.org/) and higher and the [Swift Package Manager (SPM)](https://github.com/apple/swift-package-manager).
+Swift SDL2 is available for all platforms that support [Swift 5.1](https://swift.org/) and higher and the [Swift Package Manager (SPM)](https://github.com/apple/swift-package-manager).
 
 Extend the following lines in your `Package.swift` file or use it to create a new project.
 
 ```swift
-// swift-tools-version:5.0
+// swift-tools-version:5.1
 
 import PackageDescription
 
 let package = Package(
     name: "YourPackageName",
     dependencies: [
-        .package(url: "https://github.com/ctreffs/SwiftSDL2.git", from: "1.0.0")
+        .package(url: "https://github.com/ctreffs/SwiftSDL2.git", from: "1.1.0")
     ],
     targets: [
         .target(
