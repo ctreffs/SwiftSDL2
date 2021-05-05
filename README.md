@@ -1,7 +1,7 @@
 
 # <img src="https://www.libsdl.org/media/SDL_logo.png" height="20" max-width="90%" alt="SDL2" /> Swift SDL2
 
-[![Build Status](https://travis-ci.com/ctreffs/SwiftSDL2.svg?branch=master)](https://travis-ci.com/ctreffs/SwiftSDL2)
+[![CI](https://github.com/ctreffs/SwiftSDL2/actions/workflows/ci.yml/badge.svg)](https://github.com/ctreffs/SwiftSDL2/actions/workflows/ci.yml)
 [![license](https://img.shields.io/badge/license-zlib-brightgreen.svg)](LICENSE)
 [![swift version](https://img.shields.io/badge/swift-5.1+-brightgreen.svg)](https://swift.org/download)
 [![platforms](https://img.shields.io/badge/platforms-%20macOS%20|%20iOS%20|%20tvOS-brightgreen.svg)](#)
@@ -23,7 +23,6 @@ These instructions will get your copy of the project up and running on your loca
 
 * [Swift Package Manager (SPM)](https://github.com/apple/swift-package-manager)
 * [Swiftlint](https://github.com/realm/SwiftLint) for linting - (optional)
-* [SwiftEnv](https://swiftenv.fuller.li/) for Swift version management - (optional)
 
 ### 💻 Installing
 
@@ -156,8 +155,6 @@ If you are interested in contributing, please feel free to do so!
 Things that need to be done are, among others:
 
 - [ ] Wrap more SDL2 functions and types
-- [ ] Support for [Cocoapods](https://cocoapods.org) packaging
-- [ ] Support for [Carthage](https://github.com/Carthage/Carthage) packaging
 - [ ] Write some additional tests to improve coverage
 
 ## 🏷️ Versioning
@@ -190,7 +187,6 @@ See <https://www.libsdl.org/credits.php>
 * <https://github.com/latencyzero/CSDL2>
 * <https://github.com/lightive/CSDL2>
 * <https://github.com/sunlubo/CSDL2>
-* <https://github.com/MattGuerrette/CSDL2>
 * <https://github.com/KevinVitale/SwiftSDL>
 * <https://github.com/adagio/swiftsdl2>
 * <https://github.com/latencyzero/SwiftSDL>
