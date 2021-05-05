@@ -25,4 +25,8 @@ final class CSDL2Tests: XCTestCase {
         XCTAssertEqual(linked.major, 2)
         XCTAssertEqual(linked.minor, 0)
     }
+    
+    func testKeyCodeAvailability() {
+        XCTAssertNotNil(SDL_KeyCode.self)
+    }
 }
