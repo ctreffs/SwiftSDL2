@@ -155,8 +155,6 @@ If you are interested in contributing, please feel free to do so!
 Things that need to be done are, among others:
 
 - [ ] Wrap more SDL2 functions and types
-- [ ] Support for [Cocoapods](https://cocoapods.org) packaging
-- [ ] Support for [Carthage](https://github.com/Carthage/Carthage) packaging
 - [ ] Write some additional tests to improve coverage
 
 ## 🏷️ Versioning
