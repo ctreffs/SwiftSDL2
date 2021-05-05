@@ -28,4 +28,8 @@ final class CSDL2Tests: XCTestCase {
         XCTAssertGreaterThanOrEqual(compiled.patch, 10)
 
     }
+    
+    func testKeyCodeAvailability() {
+        XCTAssertNotNil(SDL_KeyCode.self)
+    }
 }

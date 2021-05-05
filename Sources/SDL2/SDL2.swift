@@ -6,3 +6,6 @@
 //
 
 @_exported import CSDL2
+
+extension SDL_KeyCode: Equatable {}
+extension SDL_KeyCode: Hashable {}
