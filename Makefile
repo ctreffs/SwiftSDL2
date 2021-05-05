@@ -9,8 +9,13 @@ genLinuxTests:
 	swift test --generate-linuxmain
 	swiftlint autocorrect --format --path Tests/
 
-test: genLinuxTests
+.PHONY: test
+test:
 	swift test
+
+.PHONY: build-release
+build-release:
+	swift build -c release
 
 submodule:
 	git submodule update --init --recursive

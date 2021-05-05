@@ -21,12 +21,9 @@ final class CSDL2Tests: XCTestCase {
 
         XCTAssertEqual(compiled.major, 2)
         XCTAssertEqual(compiled.minor, 0)
-        XCTAssertGreaterThanOrEqual(compiled.patch, 10)
-
+        
         XCTAssertEqual(linked.major, 2)
         XCTAssertEqual(linked.minor, 0)
-        XCTAssertGreaterThanOrEqual(compiled.patch, 10)
-
     }
     
     func testKeyCodeAvailability() {
