@@ -36,6 +36,7 @@ jobs:
       - name: Install dependencies
         run: |
           brew install sdl2
+          sdl2-config --version
       - name: Test
         run: make test
         env:
@@ -72,6 +73,7 @@ jobs:
         run: |
           apt update
           apt-get install -y libsdl2-dev
+          sdl2-config --version
       - name: Test
         run: make test
       - name: Build Release
