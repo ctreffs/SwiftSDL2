@@ -190,7 +190,6 @@ See <https://www.libsdl.org/credits.php>
 * <https://github.com/latencyzero/CSDL2>
 * <https://github.com/lightive/CSDL2>
 * <https://github.com/sunlubo/CSDL2>
-* <https://github.com/MattGuerrette/CSDL2>
 * <https://github.com/KevinVitale/SwiftSDL>
 * <https://github.com/adagio/swiftsdl2>
 * <https://github.com/latencyzero/SwiftSDL>
