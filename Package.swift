@@ -16,7 +16,7 @@ let package = Package(
                 .apt(["libsdl2-dev"])
         ]),
         .target(name: "SDL2", dependencies: ["CSDL2Wrapped"]),
-        /// workaround for unsafeFlags from SDL <https://forums.swift.org/t/override-for-unsafeflags-in-swift-package-manager/45273/5>
+        // workaround for unsafeFlags from SDL <https://forums.swift.org/t/override-for-unsafeflags-in-swift-package-manager/45273/5>
         .target(name: "CSDL2Wrapped", dependencies: ["CSDL2"]),
         .testTarget(name: "CSDL2Tests", dependencies: ["CSDL2"])
     ]
