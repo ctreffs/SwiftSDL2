@@ -13,8 +13,6 @@
 	#include "other_platforms.h"
 #endif
 
-
-
 // SDL_KeyCode was introduced with 2.0.12
 // <https://github.com/libsdl-org/SDL/blob/release-2.0.12/include/SDL_keycode.h#L320>
 #if SDL_MAJOR_VERSION == 2 && SDL_MINOR_VERSION == 0 && SDL_PATCHLEVEL <= 12
