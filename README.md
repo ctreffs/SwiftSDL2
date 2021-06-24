@@ -1,7 +1,8 @@
 
 # <img src="https://www.libsdl.org/media/SDL_logo.png" height="20" max-width="90%" alt="SDL2" /> Swift SDL2
 
-[![CI](https://github.com/ctreffs/SwiftSDL2/actions/workflows/ci.yml/badge.svg)](https://github.com/ctreffs/SwiftSDL2/actions/workflows/ci.yml)
+[![Linux](https://github.com/ctreffs/SwiftSDL2/actions/workflows/ci-linux.yml/badge.svg)](https://github.com/ctreffs/SwiftSDL2/actions/workflows/ci-linux.yml)
+[![macOS](https://github.com/ctreffs/SwiftSDL2/actions/workflows/ci-macos.yml/badge.svg)](https://github.com/ctreffs/SwiftSDL2/actions/workflows/ci-macos.yml)
 [![license](https://img.shields.io/badge/license-zlib-brightgreen.svg)](LICENSE)
 [![swift version](https://img.shields.io/badge/swift-5.1+-brightgreen.svg)](https://swift.org/download)
 [![platforms](https://img.shields.io/badge/platforms-%20macOS%20|%20iOS%20|%20tvOS-brightgreen.svg)](#)
@@ -38,7 +39,7 @@ import PackageDescription
 let package = Package(
     name: "YourPackageName",
     dependencies: [
-        .package(url: "https://github.com/ctreffs/SwiftSDL2.git", from: "1.1.0")
+        .package(url: "https://github.com/ctreffs/SwiftSDL2.git", from: "1.2.0")
     ],
     targets: [
         .target(
