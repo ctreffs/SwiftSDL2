@@ -34,7 +34,7 @@ jobs:
           Copy-Item "$env:SDKROOT\usr\share\winsdk.modulemap" -destination "$env:UniversalCRTSdkDir\Include\$env:UCRTVersion\um\module.modulemap"
     - name: Install Dependencies
       run: |
-        vcpkg install pkgconf
+        vcpkg install pkgconf:x64-windows
         vcpkg install sdl2:x64-windows
         vcpkg install sdl2-image:x64-windows
     - name: Test
