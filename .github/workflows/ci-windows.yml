@@ -33,6 +33,6 @@ jobs:
           Copy-Item "$env:SDKROOT\usr\share\visualc.apinotes" -destination "$env:VCToolsInstallDir\include\visualc.apinotes"
           Copy-Item "$env:SDKROOT\usr\share\winsdk.modulemap" -destination "$env:UniversalCRTSdkDir\Include\$env:UCRTVersion\um\module.modulemap"
     - name: Test
-      run: swift test -v --skip-update --parallel --enable-test-discovery
+      run: make test #swift test -v --skip-update --parallel --enable-test-discovery
     - name: Build Release
-      run: swift build -c release
+      run: make build-release #swift build -c release
