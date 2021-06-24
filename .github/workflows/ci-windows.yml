@@ -32,9 +32,14 @@ jobs:
           Copy-Item "$env:SDKROOT\usr\share\visualc.modulemap" -destination "$env:VCToolsInstallDir\include\module.modulemap"
           Copy-Item "$env:SDKROOT\usr\share\visualc.apinotes" -destination "$env:VCToolsInstallDir\include\visualc.apinotes"
           Copy-Item "$env:SDKROOT\usr\share\winsdk.modulemap" -destination "$env:UniversalCRTSdkDir\Include\$env:UCRTVersion\um\module.modulemap"
-    - name: Install Dependencies
+    - name: Install pkg-conf
       run: |
         vcpkg install pkgconf:x64-windows
+        ln -sf pkgconf /usr/bin/pkg-config # https://github.com/pkgconf/pkgconf#pkg-config-symlink
+        set PKG_CONFIG=%VCPKG_ROOT%\installed\x64-windows\tools\pkgconf\pkgconf.exe
+        echo pkg-config: %PKG_CONFIG%
+    - name: Install SDL2
+      run: |
         vcpkg install sdl2:x64-windows
         vcpkg install sdl2-image:x64-windows
     - name: Test
