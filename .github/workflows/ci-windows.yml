@@ -35,11 +35,14 @@ jobs:
     - name: Install pkg-conf
       run: |
         vcpkg install pkgconf:x64-windows
+        pkgconf --version
         set PKG_CONFIG=%VCPKG_ROOT%\installed\x64-windows\tools\pkgconf\pkgconf.exe
-        echo pkg-config: %PKG_CONFIG%
-        set PKG_CONFIG_PATH=%PKG_CONFIG_PATH%;%VCPKG_ROOT%\packages\*\lib\pkgconfig
-        echo pkg-config: %PKG_CONFIG_PATH%
-        ln -sf pkgconf /usr/bin/pkg-config # https://github.com/pkgconf/pkgconf#pkg-config-symlink
+        export PKG_CONFIG=%VCPKG_ROOT%\installed\x64-windows\tools\pkgconf\pkgconf.exe
+        $PKG_CONFIG
+
+#        set PKG_CONFIG_PATH=%PKG_CONFIG_PATH%;%VCPKG_ROOT%\packages\*\lib\pkgconfig
+#        echo pkg-config: %PKG_CONFIG_PATH%
+#        ln -sf pkgconf /usr/bin/pkg-config # https://github.com/pkgconf/pkgconf#pkg-config-symlink
 
 #   - name: Install SDL2
 #     run: |
