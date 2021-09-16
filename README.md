@@ -79,9 +79,9 @@ SDL_Init(SDL_INIT_VIDEO)
 SDL_SetHint(SDL_HINT_RENDER_DRIVER, "metal")
 SDL_InitSubSystem(SDL_INIT_VIDEO)
 
-let window = SDL_CreateWindow("SDL2 Metal Demo", 0, 0, 800, 600, SDL_WINDOW_SHOWN.rawValue | SDL_WINDOW_ALLOW_HIGHDPI.rawValue)
+let window = SDL_CreateWindow("SDL2 Metal Demo", 0, 0, 800, 600, SDL_WINDOW_SHOWN.rawValue | SDL_WINDOW_ALLOW_HIGHDPI.rawValue | SDL_WINDOW_METAL.rawValue)
 
-let renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_PRESENTVSYNC.rawValue)
+let renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_PRESENTVSYNC.rawValue | SDL_RENDERER_ACCELERATED.rawValue)
 
 guard let layerPointer = SDL_RenderGetMetalLayer(renderer) else {
     fatalError("could not get metal layer from renderer")
@@ -97,8 +97,6 @@ guard let queue: MTLCommandQueue = device.makeCommandQueue() else {
     fatalError("could not create command queue")
 }
 
-SDL_DestroyRenderer(renderer)
-
 var color = MTLClearColorMake(0, 0, 0, 1)
 
 var quit = false
@@ -106,10 +104,9 @@ var event: SDL_Event = SDL_Event()
 while(!quit) {
     while SDL_PollEvent(&event) != 0 {
         switch SDL_EventType(event.type) {
-        case SDL_KEYUP:
-            if( event.key.keysym.sym == SDLK_ESCAPE ) {
-                quit = true
-            }
+        case SDL_QUIT,
+             SDL_KEYUP where event.key.keysym.sym == SDLK_ESCAPE.rawValue:
+            quit = true
         default:
             break
         }
@@ -142,6 +139,7 @@ while(!quit) {
 
 }
 
+SDL_DestroyRenderer(renderer)
 SDL_DestroyWindow(window)
 SDL_Quit()
 ```
