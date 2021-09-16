@@ -9,6 +9,8 @@
     #else
        error "Unknown Apple platform"
     #endif
+#elif __has_include("windows_generated.h")
+    #include "windows_generated.h"
 #else
 	#include "other_platforms.h"
 #endif
