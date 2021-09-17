@@ -1,4 +1,4 @@
-$bindir = (pkgconf --variable exec_prefix sdl2).Trim()
+$bindir = ((pkgconf --variable exec_prefix sdl2).Trim() + "/bin")
 $libdir = (pkgconf --variable libdir sdl2).Trim()
 foreach ($config in "debug", "release") {
     $path = ".build/$config"
