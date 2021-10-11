@@ -49,8 +49,8 @@ jobs:
           set PKG_CONFIG=%VCPKG_ROOT%\installed\x64-windows\tools\pkgconf\pkgconf.exe
           $PKG_CONFIG
 
-      - name: Test
-        run: swift test -v --skip-update --parallel --enable-test-discovery
+      #- name: Test
+      #  run: swift test -v --skip-update --parallel --enable-test-discovery
 
-      - name: Build Release
-        run: swift build -c release
+      #- name: Build Release
+      #  run: swift build -c release
