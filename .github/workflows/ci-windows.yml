@@ -45,9 +45,14 @@ jobs:
       - name: Install pkg-conf
         shell: pwsh
         run: |
-          vcpkg install pkgconf:x64-windows
+          vcpkg install --triplet x64-windows pkgconf
           set PKG_CONFIG=%VCPKG_ROOT%\installed\x64-windows\tools\pkgconf\pkgconf.exe
           $PKG_CONFIG
+
+      - name: Install SDL2 + Vulkan
+        shell: pwsh
+        run: |
+          vcpkg install sdl2[core,vulkan] --recurse --triplet x64-windows
 
       #- name: Test
       #  run: swift test -v --skip-update --parallel --enable-test-discovery
