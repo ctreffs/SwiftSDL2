@@ -47,12 +47,18 @@ jobs:
         run: |
           vcpkg install --triplet x64-windows pkgconf
           set PKG_CONFIG=%VCPKG_ROOT%\installed\x64-windows\tools\pkgconf\pkgconf.exe
-          $PKG_CONFIG
+          $env:Path += ";%VCPKG_ROOT%\installed\x64-windows\tools\pkgconf\"
 
       - name: Install SDL2 + Vulkan
         shell: pwsh
-        run: |
-          vcpkg install sdl2[core,vulkan] --recurse --triplet x64-windows
+        run: vcpkg install sdl2[core,vulkan] --recurse --triplet x64-windows
+
+      - name: Generate shims
+        shell: pwsh
+        run: ./genshim.ps1
+
+      - name: Build
+        run: swift build -v
 
       #- name: Test
       #  run: swift test -v --skip-update --parallel --enable-test-discovery
