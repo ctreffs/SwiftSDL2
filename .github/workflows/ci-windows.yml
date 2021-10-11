@@ -27,6 +27,7 @@ jobs:
           vcpkg install --triplet x64-windows pkgconf
           echo "PKG_CONFIG=C:\vcpkg\installed\x64-windows\tools\pkgconf\pkgconf.exe" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
           vcpkg list pkgconf
+          C:\vcpkg\installed\x64-windows\tools\pkgconf\pkgconf.exe --version
           pkgconf --version
 
       - name: Install SDL2 + Vulkan
