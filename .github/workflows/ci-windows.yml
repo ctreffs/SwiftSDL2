@@ -45,7 +45,6 @@ jobs:
       - name: Install pkg-conf
         run: |
           vcpkg install pkgconf:x64-windows
-          pkgconf --version
           set PKG_CONFIG=%VCPKG_ROOT%\installed\x64-windows\tools\pkgconf\pkgconf.exe
           export PKG_CONFIG=%VCPKG_ROOT%\installed\x64-windows\tools\pkgconf\pkgconf.exe
           $PKG_CONFIG
