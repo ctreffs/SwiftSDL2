@@ -59,6 +59,8 @@ jobs:
         run: |
           $env:Path += ";C:\vcpkg\installed\x64-windows\tools\pkgconf\"
           pkgconf --version
+          PKG_CONFIG_PATH = "C:\vcpkg\installed\x64-windows\lib\pkgconfig"
+          echo $PKG_CONFIG_PATH
           ./genshim.ps1
 
       - name: Build
