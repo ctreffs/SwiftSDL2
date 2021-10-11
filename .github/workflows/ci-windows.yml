@@ -21,6 +21,11 @@ jobs:
           fetch-depth: 1
       - uses: seanmiddleditch/gha-setup-vsdevenv@master
 
+      - name: Debug
+        run: |
+          which vcpkg
+          echo %VCPKG_ROOT%
+
       - name: Install Swift ${{ matrix.tag }}
         run: |
             Install-Binary -Url "https://swift.org/builds/${{ matrix.branch }}/windows10/swift-${{ matrix.tag }}/swift-${{ matrix.tag }}-windows10.exe" -Name "installer.exe" -ArgumentList ("-q")
