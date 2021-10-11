@@ -43,10 +43,10 @@ jobs:
             Copy-Item "$env:SDKROOT\usr\share\winsdk.modulemap" -destination "$env:UniversalCRTSdkDir\Include\$env:UCRTVersion\um\module.modulemap"
       
       - name: Install pkg-conf
+        shell: pwsh
         run: |
           vcpkg install pkgconf:x64-windows
           set PKG_CONFIG=%VCPKG_ROOT%\installed\x64-windows\tools\pkgconf\pkgconf.exe
-          export PKG_CONFIG=%VCPKG_ROOT%\installed\x64-windows\tools\pkgconf\pkgconf.exe
           $PKG_CONFIG
 
       - name: Test
