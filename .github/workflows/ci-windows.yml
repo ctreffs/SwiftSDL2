@@ -25,6 +25,10 @@ jobs:
         shell: pwsh
         run: |
           vcpkg install --triplet x64-windows pkgconf
+          ls C:\vcpkg\vcpkg\installed
+          ls C:\vcpkg\vcpkg\installed\x64-windows
+          ls C:\vcpkg\vcpkg\installed\x64-windows\tools
+          ls ls C:\vcpkg\vcpkg\installed\x64-windows\pkgconf
           echo "PKG_CONFIG=C:\vcpkg\vcpkg\installed\x64-windows\tools\pkgconf\pkgconf.exe" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
           vcpkg list pkgconf
           pkgconf --version
