@@ -5,50 +5,53 @@ on:
     branches: [ master ]
   pull_request:
     branches: [ master ]
+  workflow_dispatch:
 
 jobs:
   windows-test-build-release:
     runs-on: windows-latest
-    env:
-        SNAPSHOT: "https://swift.org/builds/swift-5.4.1-release/windows10/swift-5.4.1-RELEASE/swift-5.4.1-RELEASE-windows10.exe"
+    strategy:
+      matrix:
+        include:
+          - tag: 5.5-RELEASE
+            branch: swift-5.5-release
     steps:
-    - uses: actions/checkout@master
-    - uses: seanmiddleditch/gha-setup-vsdevenv@master
+      - uses: actions/checkout@master
+        with:
+          fetch-depth: 1
+      - uses: seanmiddleditch/gha-setup-vsdevenv@master
+
+      - name: Install Swift ${{ matrix.tag }}
+        run: |
+            Install-Binary -Url "https://swift.org/builds/${{ matrix.branch }}/windows10/swift-${{ matrix.tag }}/swift-${{ matrix.tag }}-windows10.exe" -Name "installer.exe" -ArgumentList ("-q")
       
-# - name: Install Swift
-#   run: |
-#       Install-Binary -Url "${env:SNAPSHOT}" -Name "installer.exe" -ArgumentList ("-q")
-# - name: Set Environment Variables
-#   run: |
-#       echo "SDKROOT=C:\Library\Developer\Platforms\Windows.platform\Developer\SDKs\Windows.sdk" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
-#       echo "DEVELOPER_DIR=C:\Library\Developer" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
-# - name: Adjust Paths
-#   run: |
-#       echo "C:\Library\Swift-development\bin;C:\Library\icu-67\usr\bin" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
-#       echo "C:\Library\Developer\Toolchains\unknown-Asserts-development.xctoolchain\usr\bin" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
-# - name: Install Supporting Files
-#   run: |
-#       Copy-Item "$env:SDKROOT\usr\share\ucrt.modulemap" -destination "$env:UniversalCRTSdkDir\Include\$env:UCRTVersion\ucrt\module.modulemap"
-#       Copy-Item "$env:SDKROOT\usr\share\visualc.modulemap" -destination "$env:VCToolsInstallDir\include\module.modulemap"
-#       Copy-Item "$env:SDKROOT\usr\share\visualc.apinotes" -destination "$env:VCToolsInstallDir\include\visualc.apinotes"
-#       Copy-Item "$env:SDKROOT\usr\share\winsdk.modulemap" -destination "$env:UniversalCRTSdkDir\Include\$env:UCRTVersion\um\module.modulemap"
-    - name: Install pkg-conf
-      run: |
-        vcpkg install pkgconf:x64-windows
-        pkgconf --version
-        set PKG_CONFIG=%VCPKG_ROOT%\installed\x64-windows\tools\pkgconf\pkgconf.exe
-        export PKG_CONFIG=%VCPKG_ROOT%\installed\x64-windows\tools\pkgconf\pkgconf.exe
-        $PKG_CONFIG
+      - name: Set Environment Variables
+        run: |
+            echo "SDKROOT=C:\Library\Developer\Platforms\Windows.platform\Developer\SDKs\Windows.sdk" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+            echo "DEVELOPER_DIR=C:\Library\Developer" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+      
+      - name: Adjust Paths
+        run: |
+            echo "C:\Library\Swift-development\bin;C:\Library\icu-67\usr\bin" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
+            echo "C:\Library\Developer\Toolchains\unknown-Asserts-development.xctoolchain\usr\bin" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
+      
+      - name: Install Supporting Files
+        run: |
+            Copy-Item "$env:SDKROOT\usr\share\ucrt.modulemap" -destination "$env:UniversalCRTSdkDir\Include\$env:UCRTVersion\ucrt\module.modulemap"
+            Copy-Item "$env:SDKROOT\usr\share\visualc.modulemap" -destination "$env:VCToolsInstallDir\include\module.modulemap"
+            Copy-Item "$env:SDKROOT\usr\share\visualc.apinotes" -destination "$env:VCToolsInstallDir\include\visualc.apinotes"
+            Copy-Item "$env:SDKROOT\usr\share\winsdk.modulemap" -destination "$env:UniversalCRTSdkDir\Include\$env:UCRTVersion\um\module.modulemap"
+      
+      - name: Install pkg-conf
+        run: |
+          vcpkg install pkgconf:x64-windows
+          pkgconf --version
+          set PKG_CONFIG=%VCPKG_ROOT%\installed\x64-windows\tools\pkgconf\pkgconf.exe
+          export PKG_CONFIG=%VCPKG_ROOT%\installed\x64-windows\tools\pkgconf\pkgconf.exe
+          $PKG_CONFIG
 
-#        set PKG_CONFIG_PATH=%PKG_CONFIG_PATH%;%VCPKG_ROOT%\packages\*\lib\pkgconfig
-#        echo pkg-config: %PKG_CONFIG_PATH%
-#        ln -sf pkgconf /usr/bin/pkg-config # https://github.com/pkgconf/pkgconf#pkg-config-symlink
+      - name: Test
+        run: swift test -v --skip-update --parallel --enable-test-discovery
 
-#   - name: Install SDL2
-#     run: |
-#       vcpkg install sdl2:x64-windows
-#       vcpkg install sdl2-image:x64-windows
-#   - name: Test
-#     run: swift test -v --enable-test-discovery
-#   - name: Build Release
-#     run: swift build -c release
+      - name: Build Release
+        run: swift build -c release
