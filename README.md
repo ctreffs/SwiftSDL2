@@ -1,12 +1,10 @@
 
 # <img src="https://www.libsdl.org/media/SDL_logo.png" height="20" max-width="90%" alt="SDL2" /> Swift SDL2
 
+[![license](https://img.shields.io/badge/license-zlib-brightgreen.svg)](LICENSE)
 [![Linux](https://github.com/ctreffs/SwiftSDL2/actions/workflows/ci-linux.yml/badge.svg)](https://github.com/ctreffs/SwiftSDL2/actions/workflows/ci-linux.yml)
 [![macOS](https://github.com/ctreffs/SwiftSDL2/actions/workflows/ci-macos.yml/badge.svg)](https://github.com/ctreffs/SwiftSDL2/actions/workflows/ci-macos.yml)
-[![license](https://img.shields.io/badge/license-zlib-brightgreen.svg)](LICENSE)
-[![swift version](https://img.shields.io/badge/swift-5.1+-brightgreen.svg)](https://swift.org/download)
-[![platforms](https://img.shields.io/badge/platforms-%20macOS%20|%20iOS%20|%20tvOS-brightgreen.svg)](#)
-[![platforms](https://img.shields.io/badge/platforms-linux-brightgreen.svg)](#)
+[![Windows](https://github.com/ctreffs/SwiftSDL2/actions/workflows/ci-windows.yml/badge.svg)](https://github.com/ctreffs/SwiftSDL2/actions/workflows/ci-windows.yml)
 
 This is a  **thin** Swift wrapper around the popular and excellent [**Simple DirectMedia Layer**](https://www.libsdl.org) library.  
 It provides a **swifty** and **typesafe** API. 
