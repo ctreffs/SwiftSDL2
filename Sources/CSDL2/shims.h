@@ -1,14 +1,5 @@
 // <https://stackoverflow.com/a/5920028/6043526>
-#if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__NT__)
-   //define something for Windows (32-bit and 64-bit, this part is common)
-   #ifdef _WIN64
-      //define something for Windows (64-bit only)
-      error "Win64 unsupported"
-   #else
-      //define something for Windows (32-bit only)
-      error "Win32 unsupported"
-   #endif
-#elif __APPLE__
+#if __APPLE__
     #include <TargetConditionals.h>
     #if TARGET_IPHONE_SIMULATOR
          #include "apple_iOS.h" // iOS Simulator
@@ -18,6 +9,12 @@
         #include "apple_macOS.h" //  macOS
     #else
        error "Unknown Apple platform"
+    #endif
+#elif defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__NT__)
+    #if __has_include("windows_generated.h")
+        #include "windows_generated.h"
+    #else
+       error "windows_generated.h missing - run `genshim.ps1`"
     #endif
 #elif __linux__
     #include "linux.h" //  linux
