@@ -61,8 +61,10 @@ jobs:
           $env:Path += ";C:\vcpkg\installed\x64-windows\tools\pkgconf\" # required to be set there!
           ./genshim.ps1
 
-      - name: Build Release
-        run: swift build -c release
+      - name: Build Debug & Release
+        run: 
+          swift build -c debug
+          swift build -c release
 
       - name: Copy libs
         shell: pwsh
