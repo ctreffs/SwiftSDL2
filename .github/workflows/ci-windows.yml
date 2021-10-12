@@ -61,11 +61,14 @@ jobs:
           $env:Path += ";C:\vcpkg\installed\x64-windows\tools\pkgconf\" # required to be set there!
           ./genshim.ps1
 
-      - name: Build
-        run: swift build -v
+      - name: Build Release
+        run: swift build -c release
 
-      #- name: Test
-      #  run: swift test -v --skip-update --parallel --enable-test-discovery
+      - name: Copy libs
+        shell: pwsh
+        run: |
+          $env:Path += ";C:\vcpkg\installed\x64-windows\tools\pkgconf\" # required to be set there!
+          ./copylibs.ps1
 
-      #- name: Build Release
-      #  run: swift build -c release
+      - name: Test
+        run: swift test -v --skip-update --parallel --enable-test-discovery
