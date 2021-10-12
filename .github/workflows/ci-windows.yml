@@ -37,6 +37,7 @@ jobs:
           $env:Path += ";C:\vcpkg\installed\x64-windows\tools\pkgconf\"
           ls C:\vcpkg\installed\x64-windows\lib\pkgconfig
           pkgconf --libs sdl2
+          pkgconf --variable includedir sdl2
 
       - name: Install Swift ${{ matrix.tag }}
         run: |
