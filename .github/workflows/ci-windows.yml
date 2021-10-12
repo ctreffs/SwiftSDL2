@@ -32,12 +32,7 @@ jobs:
 
       - name: Install SDL2 + Vulkan
         shell: pwsh
-        run: |
-          vcpkg install sdl2[core,vulkan] --recurse --triplet x64-windows
-          $env:Path += ";C:\vcpkg\installed\x64-windows\tools\pkgconf\"
-          ls C:\vcpkg\installed\x64-windows\lib\pkgconfig
-          pkgconf --libs sdl2
-          pkgconf --variable includedir sdl2
+        run: vcpkg install sdl2[core,vulkan] --recurse --triplet x64-windows
 
       - name: Install Swift ${{ matrix.tag }}
         run: |
@@ -63,10 +58,8 @@ jobs:
       - name: Generate shims
         shell: pwsh
         run: |
-          $env:Path += ";C:\vcpkg\installed\x64-windows\tools\pkgconf\"
-          $includedir = (pkgconf --variable includedir sdl2).Trim()
-          Write-Output ('#include "' + $includedir + '/SDL2/SDL.h"') > Sources/CSDL2/windows_generated.h
-          Write-Output ('#include "' + $includedir + '/SDL2/SDL_vulkan.h"') >> Sources/CSDL2/windows_generated.h
+          $env:Path += ";C:\vcpkg\installed\x64-windows\tools\pkgconf\" # required to be set there!
+          ./genshims.ps1
 
       - name: Build
         run: swift build -v
