@@ -63,7 +63,7 @@ jobs:
 
       - name: Build Debug & Release
         run: 
-          swift build -c debug
+          swift build
           swift build -c release
 
       - name: Copy libs
