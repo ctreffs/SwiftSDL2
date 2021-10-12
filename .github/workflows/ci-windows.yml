@@ -62,7 +62,7 @@ jobs:
           ./genshim.ps1
 
       - name: Build Debug & Release
-        run: 
+        run: |
           swift build
           swift build -c release
 
