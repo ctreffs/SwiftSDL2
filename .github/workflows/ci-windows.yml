@@ -35,7 +35,7 @@ jobs:
         run: |
           vcpkg install sdl2[core,vulkan] --recurse --triplet x64-windows
           ls C:\vcpkg\installed\x64-windows\lib\pkgconfig
-          ls C:\vcpkg\installed\x64-windows\lib\pkgconfig\include
+          pkgconf --libs sdl2
 
       - name: Install Swift ${{ matrix.tag }}
         run: |
