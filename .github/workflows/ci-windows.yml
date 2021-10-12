@@ -59,7 +59,7 @@ jobs:
         shell: pwsh
         run: |
           $env:Path += ";C:\vcpkg\installed\x64-windows\tools\pkgconf\" # required to be set there!
-          ./genshims.ps1
+          ./genshim.ps1
 
       - name: Build
         run: swift build -v
