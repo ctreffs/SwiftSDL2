@@ -41,6 +41,14 @@
 #include <SDL_surface.h>
 #include <SDL_system.h>
 #include <SDL_syswm.h>
+#include <SDL_thread.h>
+#include <SDL_timer.h>
+#include <SDL_touch.h>
+#include <SDL_types.h>
+#include <SDL_version.h>
+#include <SDL_video.h>
+#include <SDL_vulkan.h>
+// --- testing ----
 #include <SDL_test.h>
 #include <SDL_test_assert.h>
 #include <SDL_test_common.h>
@@ -54,10 +62,3 @@
 #include <SDL_test_md5.h>
 #include <SDL_test_memory.h>
 #include <SDL_test_random.h>
-#include <SDL_thread.h>
-#include <SDL_timer.h>
-#include <SDL_touch.h>
-#include <SDL_types.h>
-#include <SDL_version.h>
-#include <SDL_video.h>
-#include <SDL_vulkan.h>
