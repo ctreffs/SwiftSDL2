@@ -2,8 +2,6 @@ import SDL2
 #if canImport(Metal)
 import Metal
 import class QuartzCore.CAMetalLayer
-#else
-#error("Metal not supported")
 #endif
 
 if #available(macOS 10.11, *) {
