@@ -1,6 +1,5 @@
-lint:
-	swiftlint autocorrect --format
-	swiftlint lint --quiet
+lint-fix:
+	swiftlint fix --format
 
 lintErrorOnly:
 	@swiftlint lint --quiet | grep error

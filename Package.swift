@@ -7,7 +7,9 @@ let package = Package(
         .library(name: "SDL2",
                  targets: ["SDL2"]),
         .executable(name: "MinimalApp",
-                    targets: ["Minimal"])
+                    targets: ["Minimal"]),
+        .executable(name: "MetalApp",
+                    targets: ["Metal"])
     ],
     targets: [
         .systemLibrary(
@@ -21,6 +23,7 @@ let package = Package(
         // workaround for unsafeFlags from SDL <https://forums.swift.org/t/override-for-unsafeflags-in-swift-package-manager/45273/5>
         .target(name: "CSDL2Wrapped", dependencies: ["CSDL2"]),
         .target(name: "Minimal", dependencies: ["SDL2"], path: "Sources/Demos/Minimal"),
+        .target(name: "Metal", dependencies: ["SDL2"], path: "Sources/Demos/Metal"),
         .testTarget(name: "CSDL2Tests", dependencies: ["CSDL2"])
     ]
 )
