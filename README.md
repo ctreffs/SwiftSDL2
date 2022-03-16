@@ -64,85 +64,54 @@ depending on your platform.
 
 ## 📝 Code Example
 
+### Minimal
 
-### 🤘 Minimal Metal example application
-
+A minimal example is located at [Sources/Demos/Minimal](Sources/Demos/Minimal).   
 
 ```swift
 import SDL2
-import Metal
-import class QuartzCore.CAMetalLayer
 
-SDL_Init(SDL_INIT_VIDEO)
-SDL_SetHint(SDL_HINT_RENDER_DRIVER, "metal")
-SDL_InitSubSystem(SDL_INIT_VIDEO)
-
-let window = SDL_CreateWindow("SDL2 Metal Demo", 0, 0, 800, 600, SDL_WINDOW_SHOWN.rawValue | SDL_WINDOW_ALLOW_HIGHDPI.rawValue | SDL_WINDOW_METAL.rawValue)
-
-let renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_PRESENTVSYNC.rawValue | SDL_RENDERER_ACCELERATED.rawValue)
-
-guard let layerPointer = SDL_RenderGetMetalLayer(renderer) else {
-    fatalError("could not get metal layer from renderer")
+// Initialize SDL video systems
+guard SDL_Init(SDL_INIT_VIDEO) == 0 else {
+    fatalError("SDL could not initialize! SDL_Error: \(String(cString: SDL_GetError()))")
 }
 
-let layer: CAMetalLayer = unsafeBitCast(layerPointer, to: CAMetalLayer.self)
-
-guard let device: MTLDevice = layer.device else {
-    fatalError("metal device missing")
-}
-
-guard let queue: MTLCommandQueue = device.makeCommandQueue() else {
-    fatalError("could not create command queue")
-}
-
-var color = MTLClearColorMake(0, 0, 0, 1)
+// Create a window at the center of the screen with 800x600 pixel resolution
+let window = SDL_CreateWindow(
+    "SDL2 Minimal Demo",
+    Int32(SDL_WINDOWPOS_CENTERED_MASK), Int32(SDL_WINDOWPOS_CENTERED_MASK),
+    800, 600,
+    SDL_WINDOW_SHOWN.rawValue)
 
 var quit = false
-var event: SDL_Event = SDL_Event()
-while(!quit) {
-    while SDL_PollEvent(&event) != 0 {
-        switch SDL_EventType(event.type) {
-        case SDL_QUIT,
-             SDL_KEYUP where event.key.keysym.sym == SDLK_ESCAPE.rawValue:
+var event = SDL_Event()
+
+// Run until app is quit
+while !quit {
+    // Poll for (input) events
+    while SDL_PollEvent(&event) > 0 {
+        // if the quit event is triggered ...
+        if event.type == SDL_QUIT.rawValue {
+            // ... quit the run loop
             quit = true
-        default:
-            break
         }
     }
 
-    guard let surface = layer.nextDrawable() else {
-        break
-    }
-
-    color.blue = (color.blue > 1.0) ? 0 : color.blue + 0.01
-
-    let pass = MTLRenderPassDescriptor()
-    pass.colorAttachments[0].clearColor = color
-    pass.colorAttachments[0].loadAction = .clear
-    pass.colorAttachments[0].storeAction = .store
-    pass.colorAttachments[0].texture = surface.texture
-
-    guard let buffer = queue.makeCommandBuffer() else {
-        fatalError("could not create command buffer")
-    }
-
-    guard let encoder = buffer.makeRenderCommandEncoder(descriptor: pass) else {
-        fatalError("could not create render command encoder")
-    }
-
-    encoder.endEncoding()
-
-    buffer.present(surface)
-    buffer.commit()
-
+    // wait 100 ms
+    SDL_Delay(100)
 }
 
-SDL_DestroyRenderer(renderer)
+// Destroy the window
 SDL_DestroyWindow(window)
+
+// Quit all SDL systems
 SDL_Quit()
 ```
 
-See the unit tests for more examples.
+### Metal + macOS
+
+There is another demo displaying a SDL2 demo window at [Sources/Demos/MetalApp](Sources/Demos/MetalApp).
+
 
 ## 💁 Help needed
 
