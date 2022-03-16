@@ -23,7 +23,7 @@ let package = Package(
         // workaround for unsafeFlags from SDL <https://forums.swift.org/t/override-for-unsafeflags-in-swift-package-manager/45273/5>
         .target(name: "CSDL2Wrapped", dependencies: ["CSDL2"]),
         .target(name: "Minimal", dependencies: ["SDL2"], path: "Sources/Demos/Minimal"),
-        .target(name: "MetalApp", dependencies: ["SDL2"], path: "Sources/Demos/MetalApp"),
+        .target(name: "MetalApp", dependencies: ["SDL2"], path: "Sources/Demos/MetalApp",swiftSettings: [.define("METAL_ENABLED", .when(platforms: [.macOS]))]),
         .testTarget(name: "CSDL2Tests", dependencies: ["CSDL2"])
     ]
 )
