@@ -110,7 +110,7 @@ SDL_Quit()
 
 ### Metal + macOS
 
-There is another demo displaying a SDL2 demo window at [Sources/Demos/Metal](Sources/Demos/Metal).
+There is another demo displaying a SDL2 demo window at [Sources/Demos/MetalApp](Sources/Demos/MetalApp).
 
 
 ## 💁 Help needed
