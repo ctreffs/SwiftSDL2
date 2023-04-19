@@ -19,12 +19,12 @@ jobs:
       - name: Checkout
         uses: actions/checkout@master
       - name: Restore APT cache
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: /var/cache/apt
           key: ${{ runner.os }}-apt
       - name: Restore cached SPM dependencies
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: |
             .build/repositories
