@@ -13,8 +13,8 @@ jobs:
     strategy:
       matrix:
         include:
-          - tag: 5.5-RELEASE
-            branch: swift-5.5-release
+          - tag: 5.7-RELEASE
+            branch: swift-5.7-release
     steps:
       - uses: actions/checkout@master
         with:
