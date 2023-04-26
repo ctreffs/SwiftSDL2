@@ -17,26 +17,30 @@ jobs:
       image: swift:${{ matrix.swift }}
     steps:
       - name: Checkout
-        uses: actions/checkout@master
+        uses: actions/checkout@v3.5.2
+
       - name: Restore APT cache
-        uses: actions/cache@v3
+        uses: actions/cache@v3.3.1
         with:
           path: /var/cache/apt
           key: ${{ runner.os }}-apt
+
       - name: Restore cached SPM dependencies
-        uses: actions/cache@v3
+        uses: actions/cache@v3.3.1
         with:
           path: |
             .build/repositories
           key: ${{ runner.os }}-spm-repos-${{ hashFiles('**/Package.resolved') }}
           restore-keys: |
             ${{ runner.os }}-spm-repos-
+
       - name: Install dependencies
         run: |
           apt update
-          apt-get install -y libsdl2-dev
-          sdl2-config --version
+          apt install -y libsdl2-dev
+
       - name: Test
-        run: make test
+        run: swift test
+
       - name: Build Release
-        run: make build-release
+        run: swift build -c release
