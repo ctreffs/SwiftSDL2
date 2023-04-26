@@ -45,10 +45,10 @@ jobs:
 
           pkgconf --version
 
-          if ! pkgconf sdl2 --exists; then
+          if !(pkgconf sdl2 --exists) {
             echo "SDL NOT FOUND"
             exit -1
-          fi
+          }
           
           pkgconf sdl2 --print-variables
 
