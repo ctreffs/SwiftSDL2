@@ -11,28 +11,29 @@ jobs:
   windows-test-build-release:
     runs-on: windows-latest
     steps:
-      - uses: compnerd/gha-setup-swift@main
-        with:
-          branch: swift-5.7-release
-          tag: 5.7-RELEASE
+      # - uses: compnerd/gha-setup-swift@main
+      #   with:
+      #     branch: swift-5.7-release
+      #     tag: 5.7-RELEASE
 
-      - name: Checkout
-        uses: actions/checkout@v3.5.2
+      # - name: Checkout
+      #   uses: actions/checkout@v3.5.2
 
       - name: Install dependencies, generate shims & copy libs
         shell: pwsh
         run: |
-          vcpkg help
           vcpkg install sdl2[core,vulkan] --recurse --triplet x64-windows
           vcpkg integrate install
-          # vcpkg install --triplet x64-windows pkgconf
-          # echo "PKG_CONFIG=C:\vcpkg\installed\x64-windows\tools\pkgconf\pkgconf.exe" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
-          # echo "PKG_CONFIG_PATH=C:\vcpkg\installed\x64-windows\lib\pkgconfig" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
-          # $env:Path += ";C:\vcpkg\installed\x64-windows\tools\pkgconf\"
-          # pkgconf --version
-          # pkgconf --list-all
-          # pkgconf sdl2 --exists
-          # pkgconf sdl2 --print-variables
+
+          vcpkg install --triplet x64-windows pkgconf
+          echo "PKG_CONFIG=C:\vcpkg\installed\x64-windows\tools\pkgconf\pkgconf.exe" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+          echo "PKG_CONFIG_PATH=C:\vcpkg\installed\x64-windows\lib\pkgconfig" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+          $env:Path += ";C:\vcpkg\installed\x64-windows\tools\pkgconf\"
+          pkgconf --version
+
+          pkgconf --list-all
+          pkgconf sdl2 --exists
+          pkgconf sdl2 --print-variables
           
           # $includedir = (pkgconf --variable includedir sdl2).Trim()
           # Write-Output ('#include "' + $includedir + '/SDL2/SDL.h"') > Sources/CSDL2/windows_generated.h
