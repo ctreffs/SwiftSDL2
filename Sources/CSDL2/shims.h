@@ -14,7 +14,7 @@
     #if __has_include("windows_generated.h")
         #include "windows_generated.h"
     #else
-       error "windows_generated.h missing - run `genshim.ps1`"
+        #include "windows.h"
     #endif
 #elif __linux__
     #include "linux.h" //  linux
