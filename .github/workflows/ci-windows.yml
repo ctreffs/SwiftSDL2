@@ -24,6 +24,13 @@ jobs:
         env:
           PKG_CONFIG_PATH: $PWD/vcpkg/installed/x64-windows/lib/pkgconfig
         run: |
+          whoami
+          echo $HOME
+          echo $GITHUB_WORKSPACE
+          echo "Testing from branch:"
+          echo $GITHUB_REFH
+          pwd
+
           vcpkg install sdl2[core,vulkan] --recurse --triplet x64-windows
           # choco install pkgconfiglite
           # pkgconfiglite --exists sdl2
@@ -38,9 +45,12 @@ jobs:
 
           pkgconf --version
 
-          pkgconf --list-all
-          pkgconf sdl2 --exists
-          # pkgconf sdl2 --print-variables
+          if ! pkgconf sdl2 --exists; then
+            echo "SDL NOT FOUND"
+            exit -1
+          fi
+          
+          pkgconf sdl2 --print-variables
 
           # Copy-Item C:/vcpkg/packages/sdl2_x64-windows/debug/lib/pkgconfig/sdl2.pc C:\vcpkg\installed\x64-windows\lib\pkgconfig
           
