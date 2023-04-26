@@ -45,7 +45,7 @@ jobs:
 
           pkgconf --version
 
-          if !(pkgconf sdl2 --exists) {
+          if (-NOT pkgconf sdl2 --exists) {
             echo "SDL NOT FOUND"
             exit -1
           }
