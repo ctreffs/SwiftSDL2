@@ -38,6 +38,10 @@ jobs:
 
           # build
           swift build
+          swift build -c release
+
+          # copy libs
+          ./copylibs.ps1
 
           # test
           swift test
