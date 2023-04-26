@@ -30,13 +30,16 @@ jobs:
 
       - name: Install SDL2 + Vulkan
         shell: pwsh
-        run: vcpkg install sdl2[core,vulkan] --recurse --triplet x64-windows
+        run: |
+          vcpkg install sdl2[core,vulkan] --recurse --triplet x64-windows
+          pkgconf --variable includedir sdl2
 
-      - name: Generate shims
+      - name: Generate shims & copy libs
         shell: pwsh
         run: |
-          $env:Path += ";C:\vcpkg\installed\x64-windows\tools\pkgconf\" # required to be set there!
+          $env:Path += ";C:\vcpkg\installed\x64-windows\tools\pkgconf\"
           ./genshim.ps1
+          ./copylibs.ps1
 
       - name: Test
         run: swift test
