@@ -23,7 +23,7 @@ jobs:
         uses: actions/cache@v3.3.1
         with:
           key: windows-x64-vcpkg
-          path: $VCPKG_DIRECTORY
+          path: C:\vcpkg
 
       - name: Install dependencies, generate shims & copy libs
         shell: pwsh
@@ -33,10 +33,18 @@ jobs:
           
           $env:PKG_CONFIG_PATH=$VCPKG_DIR+'\installed\x64-windows\tools\pkgconf\;C:\vcpkg\packages\sdl2_x64-windows\debug\lib\pkgconfig\'
           $env:PKG_CONFIG_PATH
-          pkgconfig --list-all
+          pkgconf --list-all
 
           pkgconf --version
           pkgconf sdl2 --print-variables
+
+          $includedir = (pkgconf --variable includedir sdl2).Trim()
+          $bindir = ((pkgconf --variable exec_prefix sdl2).Trim() + "/bin")
+          $libdir = (pkgconf --variable libdir sdl2).Trim()
+
+          $includedir
+          $bindir
+          $libdir
 
       # - name: Test & Build Release
       #   env:
