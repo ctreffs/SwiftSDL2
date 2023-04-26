@@ -11,13 +11,13 @@ jobs:
   windows-test-build-release:
     runs-on: windows-latest
     steps:
-      # - uses: compnerd/gha-setup-swift@main
-      #   with:
-      #     branch: swift-5.7-release
-      #     tag: 5.7-RELEASE
+      - uses: compnerd/gha-setup-swift@main
+        with:
+          branch: swift-5.7-release
+          tag: 5.7-RELEASE
 
-      # - name: Checkout
-      #   uses: actions/checkout@v3.5.2
+      - name: Checkout
+        uses: actions/checkout@v3.5.2
 
       - name: Install dependencies, generate shims & copy libs
         shell: pwsh
@@ -47,8 +47,8 @@ jobs:
           #     Copy-Item ($libdir + '/SDL2.lib') $path
           #   }
           # }
-      # - name: Test
-      #   run: swift test
+      - name: Test
+        run: swift test
 
-      # - name: Build Release
-      #   run: swift build -c release
+      - name: Build Release
+        run: swift build -c release
