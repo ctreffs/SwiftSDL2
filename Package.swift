@@ -20,8 +20,13 @@ let package = Package(
                 .apt(["libsdl2-dev"])
         ]),
         .target(name: "SDL2", dependencies: ["CSDL2"]),
-        .target(name: "Minimal", dependencies: ["SDL2"], path: "Sources/Demos/Minimal"),
-        .target(name: "MetalApp", dependencies: ["SDL2"], path: "Sources/Demos/MetalApp", swiftSettings: [.define("METAL_ENABLED", .when(platforms: [.macOS]))]),
+        .executableTarget(name: "Minimal", dependencies: ["SDL2"], path: "Sources/Demos/Minimal"),
+        .executableTarget(
+            name: "MetalApp",
+            dependencies: ["SDL2"],
+            path: "Sources/Demos/MetalApp",
+            swiftSettings: [.define("METAL_ENABLED", .when(platforms: [.macOS]))]
+        ),
         .testTarget(name: "CSDL2Tests", dependencies: ["CSDL2"])
     ]
 )

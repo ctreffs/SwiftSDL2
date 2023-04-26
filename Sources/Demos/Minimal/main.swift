@@ -1,9 +1,5 @@
 import SDL2
 
-func SDL_Flag<I: FixedWidthInteger, R: RawRepresentable>(_ flag: R) -> I where R.RawValue: FixedWidthInteger {
-    I(flag.rawValue)
-}
-
 // Initialize SDL video systems
 guard SDL_Init(SDL_INIT_VIDEO) == 0 else {
     fatalError("SDL could not initialize! SDL_Error: \(String(cString: SDL_GetError()))")
