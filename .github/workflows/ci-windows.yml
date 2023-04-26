@@ -31,11 +31,11 @@ jobs:
           vcpkg install sdl2[core,vulkan] pkgconf --recurse --triplet x64-windows
           vcpkg integrate install
           
+          $env:Path += ";C:\vcpkg\installed\x64-windows\tools\pkgconf\"
           $env:PKG_CONFIG_PATH=$VCPKG_DIR+'\installed\x64-windows\tools\pkgconf\;C:\vcpkg\packages\sdl2_x64-windows\debug\lib\pkgconfig\'
-          $env:PKG_CONFIG_PATH
-          pkgconf --list-all
 
           pkgconf --version
+          pkgconf --list-all
           pkgconf sdl2 --print-variables
 
           $includedir = (pkgconf --variable includedir sdl2).Trim()
