@@ -13,8 +13,8 @@ jobs:
     steps:
       - uses: compnerd/gha-setup-swift@main
         with:
-          branch: swift-5.7-release
-          tag: 5.7-RELEASE
+          branch: swift-5.8-release
+          tag: 5.8-RELEASE
 
       - name: Checkout
         uses: actions/checkout@v3.5.2
@@ -36,7 +36,7 @@ jobs:
           $env:Path += ";C:\vcpkg\installed\x64-windows\tools\pkgconf\"
           $env:PKG_CONFIG_PATH=$VCPKG_DIR+'\installed\x64-windows\tools\pkgconf\;C:\vcpkg\packages\sdl2_x64-windows\debug\lib\pkgconfig\'
 
-          get-content C:/vcpkg/packages/sdl2_x64-windows/lib/pkgconfig/sdl2.pc
+          # get-content C:/vcpkg/packages/sdl2_x64-windows/lib/pkgconfig/sdl2.pc
 
           # set sdl variables
           $includedir = (pkgconf --variable includedir sdl2).Trim()
