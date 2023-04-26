@@ -36,6 +36,8 @@ jobs:
           $env:Path += ";C:\vcpkg\installed\x64-windows\tools\pkgconf\"
           $env:PKG_CONFIG_PATH=$VCPKG_DIR+'\installed\x64-windows\tools\pkgconf\;C:\vcpkg\packages\sdl2_x64-windows\debug\lib\pkgconfig\'
 
+          get-content C:/vcpkg/packages/sdl2_x64-windows/lib/pkgconfig/sdl2.pc
+
           # set sdl variables
           $includedir = (pkgconf --variable includedir sdl2).Trim()
           $bindir = ((pkgconf --variable exec_prefix sdl2).Trim() + "/bin")
