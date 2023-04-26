@@ -36,10 +36,6 @@ jobs:
           vcpkg integrate install
 
           pkgconf --version
-
-          status = `$(pkgconf sdl2 --exists)``
-          echo "SDL FOUND: $status"
-          
           pkgconf sdl2 --print-variables
 
       # - name: Test & Build Release

@@ -1,0 +1,52 @@
+{
+    "configurations": [
+        {
+            "type": "lldb",
+            "request": "launch",
+            "sourceLanguages": [
+                "swift"
+            ],
+            "name": "Debug MinimalApp",
+            "program": "${workspaceFolder:SwiftSDL2}/.build/debug/MinimalApp",
+            "args": [],
+            "cwd": "${workspaceFolder:SwiftSDL2}",
+            "preLaunchTask": "swift: Build Debug MinimalApp"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "sourceLanguages": [
+                "swift"
+            ],
+            "name": "Release MinimalApp",
+            "program": "${workspaceFolder:SwiftSDL2}/.build/release/MinimalApp",
+            "args": [],
+            "cwd": "${workspaceFolder:SwiftSDL2}",
+            "preLaunchTask": "swift: Build Release MinimalApp"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "sourceLanguages": [
+                "swift"
+            ],
+            "name": "Debug MetalApp",
+            "program": "${workspaceFolder:SwiftSDL2}/.build/debug/MetalApp",
+            "args": [],
+            "cwd": "${workspaceFolder:SwiftSDL2}",
+            "preLaunchTask": "swift: Build Debug MetalApp"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "sourceLanguages": [
+                "swift"
+            ],
+            "name": "Release MetalApp",
+            "program": "${workspaceFolder:SwiftSDL2}/.build/release/MetalApp",
+            "args": [],
+            "cwd": "${workspaceFolder:SwiftSDL2}",
+            "preLaunchTask": "swift: Build Release MetalApp"
+        }
+    ]
+}
