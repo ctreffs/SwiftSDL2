@@ -24,13 +24,6 @@ jobs:
         env:
           PKG_CONFIG_PATH: $PWD/vcpkg/installed/x64-windows/lib/pkgconfig
         run: |
-          whoami
-          echo $HOME
-          echo $GITHUB_WORKSPACE
-          echo "Testing from branch:"
-          echo $GITHUB_REFH
-          pwd
-
           vcpkg install sdl2[core,vulkan] --recurse --triplet x64-windows
           # choco install pkgconfiglite
           # pkgconfiglite --exists sdl2
@@ -45,28 +38,10 @@ jobs:
 
           pkgconf --version
 
-          if (-NOT pkgconf sdl2 --exists) {
-            echo "SDL NOT FOUND"
-            exit -1
-          }
+          echo "SDL FOUND: $(pkgconf sdl2 --exists)"
           
           pkgconf sdl2 --print-variables
 
-          # Copy-Item C:/vcpkg/packages/sdl2_x64-windows/debug/lib/pkgconfig/sdl2.pc C:\vcpkg\installed\x64-windows\lib\pkgconfig
-          
-          # $includedir = (pkgconf --variable includedir sdl2).Trim()
-          # Write-Output ('#include "' + $includedir + '/SDL2/SDL.h"') > Sources/CSDL2/windows_generated.h
-          # Write-Output ('#include "' + $includedir + '/SDL2/SDL_vulkan.h"') >> Sources/CSDL2/windows_generated.h
-
-          # $bindir = ((pkgconf --variable exec_prefix sdl2).Trim() + "/bin")
-          # $libdir = (pkgconf --variable libdir sdl2).Trim()
-          # foreach ($config in "debug", "release") {
-          #   $path = ".build/$config"
-          #   if (Test-Path -Path $path) {
-          #     Copy-Item ($bindir + '/SDL2.dll') $path
-          #     Copy-Item ($libdir + '/SDL2.lib') $path
-          #   }
-          # }
       # - name: Test & Build Release
       #   env:
       #     PKG_CONFIG_PATH: $PWD/vcpkg/installed/x64-windows/lib/pkgconfig
