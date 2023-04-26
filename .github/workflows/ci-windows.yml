@@ -32,6 +32,12 @@ jobs:
         shell: pwsh
         run: vcpkg install sdl2[core,vulkan] --recurse --triplet x64-windows
 
+      - name: Generate shims
+        shell: pwsh
+        run: |
+          $env:Path += ";C:\vcpkg\installed\x64-windows\tools\pkgconf\" # required to be set there!
+          ./genshim.ps1
+
       - name: Test
         run: swift test
 
