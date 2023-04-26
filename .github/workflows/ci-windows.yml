@@ -24,7 +24,7 @@ jobs:
         run: |
           vcpkg help
           vcpkg install sdl2[core,vulkan] --recurse --triplet x64-windows
-          vcpkg integrate install sdl2[core,vulkan]
+          vcpkg integrate install sdl2
           # vcpkg install --triplet x64-windows pkgconf
           # echo "PKG_CONFIG=C:\vcpkg\installed\x64-windows\tools\pkgconf\pkgconf.exe" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
           # echo "PKG_CONFIG_PATH=C:\vcpkg\installed\x64-windows\lib\pkgconfig" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
