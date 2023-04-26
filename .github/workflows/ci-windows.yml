@@ -31,6 +31,8 @@ jobs:
           $env:Path += ";C:\vcpkg\installed\x64-windows\tools\pkgconf\"
           pkgconf --version
 
+          Copy-Item C:/vcpkg/packages/sdl2_x64-windows/debug/lib/pkgconfig/sdl2.pc C:\vcpkg\installed\x64-windows\lib\pkgconfig
+
           pkgconf --list-all
           pkgconf sdl2 --exists
           pkgconf sdl2 --print-variables
