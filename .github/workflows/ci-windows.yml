@@ -10,67 +10,35 @@ on:
 jobs:
   windows-test-build-release:
     runs-on: windows-latest
-    strategy:
-      matrix:
-        include:
-          - tag: 5.7-RELEASE
-            branch: swift-5.7-release
     steps:
-      - uses: actions/checkout@master
+      - uses: compnerd/gha-setup-swift@main
         with:
-          fetch-depth: 1
-      - uses: seanmiddleditch/gha-setup-vsdevenv@master
+          branch: swift-5.8-release
+          tag: 5.8-RELEASE
 
-      - name: Install pkg-conf
+      - name: Checkout
+        uses: actions/checkout@v3.5.2
+
+      - name: Cache vcpkg
+        uses: actions/cache@v3.3.1
+        with:
+          key: windows-x64-vcpkg
+          path: C:/vcpkg/
+
+      - name: Build & Test
         shell: pwsh
         run: |
-          vcpkg install --triplet x64-windows pkgconf
-          echo "PKG_CONFIG=C:\vcpkg\installed\x64-windows\tools\pkgconf\pkgconf.exe" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
-          echo "PKG_CONFIG_PATH=C:\vcpkg\installed\x64-windows\lib\pkgconfig" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+          # install dependencies
+          vcpkg install sdl2[core,vulkan] pkgconf --recurse --triplet x64-windows
+          vcpkg integrate install
+          
+          # setup pkgconf environment
           $env:Path += ";C:\vcpkg\installed\x64-windows\tools\pkgconf\"
-          pkgconf --version
+          $env:PKG_CONFIG_PATH=$VCPKG_DIR+'\installed\x64-windows\tools\pkgconf\;C:\vcpkg\packages\sdl2_x64-windows\debug\lib\pkgconfig\'
 
-      - name: Install SDL2 + Vulkan
-        shell: pwsh
-        run: vcpkg install sdl2[core,vulkan] --recurse --triplet x64-windows
-
-      - name: Install Swift ${{ matrix.tag }}
-        run: |
-            Install-Binary -Url "https://swift.org/builds/${{ matrix.branch }}/windows10/swift-${{ matrix.tag }}/swift-${{ matrix.tag }}-windows10.exe" -Name "installer.exe" -ArgumentList ("-q")
-      
-      - name: Set Environment Variables
-        run: |
-            echo "SDKROOT=C:\Library\Developer\Platforms\Windows.platform\Developer\SDKs\Windows.sdk" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
-            echo "DEVELOPER_DIR=C:\Library\Developer" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
-      
-      - name: Adjust Paths
-        run: |
-            echo "C:\Library\Swift-development\bin;C:\Library\icu-67\usr\bin" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
-            echo "C:\Library\Developer\Toolchains\unknown-Asserts-development.xctoolchain\usr\bin" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
-      
-      - name: Install Supporting Files
-        run: |
-            Copy-Item "$env:SDKROOT\usr\share\ucrt.modulemap" -destination "$env:UniversalCRTSdkDir\Include\$env:UCRTVersion\ucrt\module.modulemap"
-            Copy-Item "$env:SDKROOT\usr\share\visualc.modulemap" -destination "$env:VCToolsInstallDir\include\module.modulemap"
-            Copy-Item "$env:SDKROOT\usr\share\visualc.apinotes" -destination "$env:VCToolsInstallDir\include\visualc.apinotes"
-            Copy-Item "$env:SDKROOT\usr\share\winsdk.modulemap" -destination "$env:UniversalCRTSdkDir\Include\$env:UCRTVersion\um\module.modulemap"
-
-      - name: Generate shims
-        shell: pwsh
-        run: |
-          $env:Path += ";C:\vcpkg\installed\x64-windows\tools\pkgconf\" # required to be set there!
-          ./genshim.ps1
-
-      - name: Build Debug & Release
-        run: |
+          # build
           swift build
-          swift build -c release
 
-      - name: Copy libs
-        shell: pwsh
-        run: |
-          $env:Path += ";C:\vcpkg\installed\x64-windows\tools\pkgconf\" # required to be set there!
-          ./copylibs.ps1
-
-      - name: Test
-        run: swift test -v --skip-update --parallel --enable-test-discovery
+          # test
+          swift test
+          

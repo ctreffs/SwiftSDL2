@@ -9,39 +9,43 @@ on:
 
 jobs:
   macos-test-build-release-xcode:
-    runs-on: macOS-latest
+    runs-on: macos-latest
     strategy:
       matrix:
         xcode: ["14.2"]
     steps:
       - name: Checkout
-        uses: actions/checkout@master
+        uses: actions/checkout@v3.5.2
+      
       - name: Select Xcode ${{ matrix.xcode }}
         run: sudo xcode-select -s /Applications/Xcode_${{ matrix.xcode }}.app
+      
       - name: Restore cached Homebrew dependencies
-        uses: actions/cache@v3
+        uses: actions/cache@v3.3.1
         with:
           path: |
             ~/Library/Caches/Homebrew/sdl2--*
             ~/Library/Caches/Homebrew/downloads/*--sdl2-*
           key: ${{ runner.os }}-brew-sdl2-${{ hashFiles('.github/brew-formulae') }}
           restore-keys: ${{ runner.os }}-brew-sdl2-
+
       - name: Restore cached SPM dependencies
-        uses: actions/cache@v3
+        uses: actions/cache@v3.3.1
         with:
           path: |
             .build/repositories
           key: ${{ runner.os }}-spm-repos-${{ hashFiles('**/Package.resolved') }}
           restore-keys: |
             ${{ runner.os }}-spm-repos-
+
       - name: Install dependencies
-        run: |
-          brew install sdl2
-          sdl2-config --version
+        run: brew install sdl2
+
       - name: Test
         run: make test
         env:
           DEVELOPER_DIR: /Applications/Xcode_${{ matrix.xcode }}.app/Contents/Developer
+
       - name: Upload test artifacts
         if: failure()
         uses: actions/upload-artifact@v3.1.2
@@ -50,10 +54,12 @@ jobs:
           path: |
             .build/**/*.json
             .build/**/*.xctest
+
       - name: Build Release
         run: make build-release
         env:
           DEVELOPER_DIR: /Applications/Xcode_${{ matrix.xcode }}.app/Contents/Developer
+
       - name: Upload build artifacts
         if: failure()
         uses: actions/upload-artifact@v3.1.2

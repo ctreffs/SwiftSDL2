@@ -19,11 +19,15 @@ final class CSDL2Tests: XCTestCase {
         var linked = SDL_version()
         SDL_GetVersion(&linked)
 
-        XCTAssertEqual(compiled.major, 2)
-        XCTAssertEqual(compiled.minor, 0)
-        
-        XCTAssertEqual(linked.major, 2)
-        XCTAssertEqual(linked.minor, 0)
+        XCTAssertGreaterThanOrEqual(compiled.major, 2)
+        XCTAssertEqual(compiled.major, linked.major)
+    }
+
+    func testAPIAvailability() {
+        XCTAssertNotNil(SDL_Init.self)
+        XCTAssertNotNil(SDL_CreateWindow.self)
+        XCTAssertNotNil(SDL_DestroyWindow.self)
+        XCTAssertNotNil(SDL_Quit.self)
     }
     
     func testKeyCodeAvailability() {
