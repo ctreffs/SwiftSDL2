@@ -9,40 +9,19 @@ on:
 
 jobs:
   macos-test-build-release-xcode:
-    runs-on: macos-latest
+    runs-on: macos-13
     strategy:
       matrix:
-        xcode: ["14.2"]
+        xcode: ["14.3.1"]
     steps:
       - name: Checkout
-        uses: actions/checkout@v3.5.2
+        uses: actions/checkout@v3.5.3
       
       - name: Select Xcode ${{ matrix.xcode }}
         run: sudo xcode-select -s /Applications/Xcode_${{ matrix.xcode }}.app
-      
-      - name: Restore cached Homebrew dependencies
-        uses: actions/cache@v3.3.1
-        with:
-          path: |
-            ~/Library/Caches/Homebrew/sdl2--*
-            ~/Library/Caches/Homebrew/downloads/*--sdl2-*
-          key: ${{ runner.os }}-brew-sdl2-${{ hashFiles('.github/brew-formulae') }}
-          restore-keys: ${{ runner.os }}-brew-sdl2-
-
-      - name: Restore cached SPM dependencies
-        uses: actions/cache@v3.3.1
-        with:
-          path: |
-            .build/repositories
-          key: ${{ runner.os }}-spm-repos-${{ hashFiles('**/Package.resolved') }}
-          restore-keys: |
-            ${{ runner.os }}-spm-repos-
-
-      - name: Install dependencies
-        run: brew install sdl2
 
       - name: Test
-        run: make test
+        run: swift test
         env:
           DEVELOPER_DIR: /Applications/Xcode_${{ matrix.xcode }}.app/Contents/Developer
 
@@ -56,7 +35,7 @@ jobs:
             .build/**/*.xctest
 
       - name: Build Release
-        run: make build-release
+        run: swift build -c release
         env:
           DEVELOPER_DIR: /Applications/Xcode_${{ matrix.xcode }}.app/Contents/Developer
 
@@ -73,3 +52,16 @@ jobs:
             .build/**/*.dylib
             .build/**/*.dSYM 
             .build/**/*.json
+
+      - name: Zip XCFramework
+        run: |
+          zip -q -9 -r SDL2.xcframework.zip SDL2.xcframework
+          echo "`swift package compute-checksum SDL2.xcframework.zip`" > SDL2.xcframework.checksum.txt
+
+      - name: Publish XCFramework
+        uses: actions/upload-artifact@v3.1.2
+        with:
+          name: build-artifacts-${{ matrix.xcode }}-${{ github.run_id }}
+          path: |
+            SDL2.xcframework.zip
+            SDL2.xcframework.checksum.txt

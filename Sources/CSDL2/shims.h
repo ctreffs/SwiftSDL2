@@ -1,15 +1,5 @@
-// <https://stackoverflow.com/a/5920028/6043526>
 #if __APPLE__
-    #include <TargetConditionals.h>
-    #if TARGET_IPHONE_SIMULATOR
-         #include "apple_iOS.h" // iOS Simulator
-    #elif TARGET_OS_IPHONE
-        #include "apple_iOS.h" // iOS device
-    #elif TARGET_OS_MAC
-        #include "apple_macOS.h" //  macOS
-    #else
-       error "Unknown Apple platform"
-    #endif
+    error "Use SDL2.xcframework"
 #elif defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__NT__)
     #if __has_include("windows_generated.h")
         #include "windows_generated.h"
