@@ -11,7 +11,7 @@ final class SDLTests: XCTestCase {
         var linked = SDL_version()
         SDL_GetVersion(&linked)
 
-        #if os(Linux) || os(Windows)
+        #if os(Linux)
         XCTAssertEqual(compiled.major, 2)
         XCTAssertEqual(compiled.major, linked.major)
         #else

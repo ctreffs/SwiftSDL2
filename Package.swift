@@ -16,7 +16,7 @@ let package = Package(
         .target(name: "SDL",
                 dependencies: [
                     .target(name: "SDL2-apple", condition: .when(platforms: [.macOS, .iOS, .tvOS])),
-                    .target(name: "CSDL2", condition: .when(platforms: [.linux])),
+                    .target(name: "CSDL2", condition: .when(platforms: [.linux, .windows])),
                 ],
                 path: "Sources/SDL2"),
         .testTarget(name: "SDLTests", dependencies: ["SDL"]),

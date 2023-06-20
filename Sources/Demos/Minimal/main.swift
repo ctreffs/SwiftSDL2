@@ -10,7 +10,7 @@ let window = SDL_CreateWindow(
     "SDL2 Minimal Demo",
     Int32(SDL_WINDOWPOS_CENTERED_MASK), Int32(SDL_WINDOWPOS_CENTERED_MASK),
     800, 600,
-    SDL_WINDOW_SHOWN.rawValue
+    UInt32(SDL_WINDOW_SHOWN.rawValue)
 )
 
 var quit = false

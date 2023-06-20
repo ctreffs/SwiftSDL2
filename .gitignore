@@ -104,3 +104,5 @@ timeline.xctimeline
 vcs.xml
 xcuserdata/
 *.zip
+vcpkg/
+Sources/CSDL2/windows_generated.h
