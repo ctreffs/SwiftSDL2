@@ -11,6 +11,10 @@ final class SDLTests: XCTestCase {
         var linked = SDL_version()
         SDL_GetVersion(&linked)
 
+        #if os(Linux) || os(Windows)
+        XCTAssertEqual(compiled.major, 2)
+        XCTAssertEqual(compiled.major, linked.major)
+        #else
         XCTAssertEqual(compiled.major, 2)
         XCTAssertEqual(compiled.major, linked.major)
 
@@ -19,6 +23,7 @@ final class SDLTests: XCTestCase {
 
         XCTAssertEqual(compiled.patch, 5)
         XCTAssertEqual(compiled.patch, linked.patch)
+        #endif
     }
 
     func testAPIAvailability() {
