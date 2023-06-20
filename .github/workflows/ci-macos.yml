@@ -9,7 +9,7 @@ on:
 
 jobs:
   macos-test-build-release-xcode:
-    runs-on: macos-latest
+    runs-on: macos-13
     strategy:
       matrix:
         xcode: ["14.3.1"]
