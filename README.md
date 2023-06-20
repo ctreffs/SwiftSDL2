@@ -6,6 +6,9 @@
 [![macOS](https://github.com/ctreffs/SwiftSDL2/actions/workflows/ci-macos.yml/badge.svg)](https://github.com/ctreffs/SwiftSDL2/actions/workflows/ci-macos.yml)
 [![Windows](https://github.com/ctreffs/SwiftSDL2/actions/workflows/ci-windows.yml/badge.svg)](https://github.com/ctreffs/SwiftSDL2/actions/workflows/ci-windows.yml)
 
+[![](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2Fctreffs%2FSwiftSDL2%2Fbadge%3Ftype%3Dswift-versions)](https://swiftpackageindex.com/ctreffs/SwiftSDL2)
+[![](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2Fctreffs%2FSwiftSDL2%2Fbadge%3Ftype%3Dplatforms)](https://swiftpackageindex.com/ctreffs/SwiftSDL2)
+
 This is a  **thin** Swift wrapper around the popular and excellent [**Simple DirectMedia Layer**](https://www.libsdl.org) library.  
 It provides a **swifty** and **typesafe** API. 
 
