@@ -24,7 +24,10 @@ let package = Package(
         .systemLibrary(
             name: "CSDL2",
             pkgConfig: "sdl2",
-            providers: [.apt(["libsdl2-dev"])]
+            providers: [
+                .apt(["libsdl2-dev"])
+                //,.vcpkg(["sdl2[core,vulkan]"])
+                ]
         ),
         .executableTarget(name: "Minimal", dependencies: ["SDL"], path: "Sources/Demos/Minimal"),
         .executableTarget(

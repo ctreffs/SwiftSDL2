@@ -8,7 +8,7 @@ git clone https://github.com/Microsoft/vcpkg.git
 # install pkgconf
 .\vcpkg\vcpkg install pkgconf --triplet x64-windows --no-print-usage
 $env:Path += ';'+ $pwd.Path + '\vcpkg\installed\x64-windows\tools\pkgconf\'                
-$env:PKG_CONFIG_PATH = '' + $pwd.Path + '\vcpkg\installed\x64-windows\lib\pkgconfig'
+$env:PKG_CONFIG_PATH = '' + $pwd.Path + '\vcpkg\installed\x64-windows\lib\pkgconfig\'
 
 # install SDL
 .\vcpkg\vcpkg install sdl2[core,vulkan] --recurse --triplet x64-windows --no-print-usage

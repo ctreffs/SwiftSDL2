@@ -25,19 +25,19 @@ These instructions will get your copy of the project up and running on your loca
 
 ### 💻 Installing
 
-Swift SDL2 is available for all platforms that support [Swift 5.1](https://swift.org/) and higher and the [Swift Package Manager (SPM)](https://github.com/apple/swift-package-manager).
+Swift SDL2 is available for all platforms that support [Swift 5.6](https://swift.org/) and higher and the [Swift Package Manager (SPM)](https://github.com/apple/swift-package-manager).
 
 Extend the following lines in your `Package.swift` file or use it to create a new project.
 
 ```swift
-// swift-tools-version:5.1
+// swift-tools-version:5.6
 
 import PackageDescription
 
 let package = Package(
     name: "YourPackageName",
     dependencies: [
-        .package(url: "https://github.com/ctreffs/SwiftSDL2.git", from: "1.2.0")
+        .package(url: "https://github.com/ctreffs/SwiftSDL2.git", from: "1.4.0")
     ],
     targets: [
         .target(
@@ -47,20 +47,27 @@ let package = Package(
 )
 
 ```
+Depending on your platform several extra steps have to be taken to SDL2 to compile.
 
-Since it's a system library wrapper you need to install the SDL2 library either via
+### Apple
 
-```sh
-brew install sdl2
-```
+For Apple platforms (macOS, iOS, tvOS) SDL2 is provided using an XCFramework so mo extra steps are needed.
 
-or 
+### Linux
+
+On Linux platforms you are required to use the following command to install SDL2 as a system package:
 
 ```sh
 apt-get install libsdl2-dev
 ```
 
-depending on your platform.
+### Windows
+
+Since Windows is a fairly new platform for Swift development there are some manual steps to perform before you can use the package.
+All the following steps assume you have a working swift environment on your Windows machine.
+If not follow the [instructions on how to install Swift on Windows](https://www.swift.org/download/#windows).
+
+You can quickly test this package is working by running the `./buildPackageWin.ps1` powershell script.
 
 ## 📝 Code Example
 
