@@ -1,14 +1,7 @@
-//
-//  CSDL2Tests.swift
-//
-//
-//  Created by Christian Treffs on 03.11.19.
-//
-
-import CSDL2
+@testable import SDL2
 import XCTest
 
-final class CSDL2Tests: XCTestCase {
+final class SDLTests: XCTestCase {
     func testVersion() {
         var compiled = SDL_version()
         compiled.major = Uint8(SDL_MAJOR_VERSION)
@@ -18,8 +11,14 @@ final class CSDL2Tests: XCTestCase {
         var linked = SDL_version()
         SDL_GetVersion(&linked)
 
-        XCTAssertGreaterThanOrEqual(compiled.major, 2)
+        XCTAssertEqual(compiled.major, 2)
         XCTAssertEqual(compiled.major, linked.major)
+
+        XCTAssertEqual(compiled.minor, 26)
+        XCTAssertEqual(compiled.minor, linked.minor)
+
+        XCTAssertEqual(compiled.patch, 5)
+        XCTAssertEqual(compiled.patch, linked.patch)
     }
 
     func testAPIAvailability() {

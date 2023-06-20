@@ -1,4 +1,4 @@
-// swift-tools-version:5.5
+// swift-tools-version:5.6
 import PackageDescription
 
 let package = Package(
@@ -18,6 +18,7 @@ let package = Package(
                     .target(name: "SDL2", condition: .when(platforms: [.macOS, .iOS, .tvOS])),
                 ]),
         .binaryTarget(name: "SDL2", path: "SDL2.xcframework"),
+        .testTarget(name: "SDLTests", dependencies: ["SDL"]),
         .executableTarget(name: "Minimal", dependencies: ["SDL"], path: "Sources/Demos/Minimal"),
         .executableTarget(
             name: "MetalApp",
