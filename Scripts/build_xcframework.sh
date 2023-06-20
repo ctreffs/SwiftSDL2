@@ -24,6 +24,8 @@ echo "    export *" >> "${BUILD_DIR}/module.modulemap"
 echo "    link \"SDL2\"" >> "${BUILD_DIR}/module.modulemap"
 echo "}" >> "${BUILD_DIR}/module.modulemap"
 
+cp "${BUILD_DIR}/module.modulemap" "${HEADERS_DIR}/module.modulemap"
+
 pushd Xcode/SDL
 
 
@@ -57,11 +59,3 @@ xcodebuild -create-xcframework \
  	-library "${BUILD_DIR}/SDL-appletvsimulator.xcarchive/Products/usr/local/lib/libSDL2.a" \
  	-headers ${HEADERS_DIR} \
 	-output "${BUILD_DIR}/SDL2.xcframework"
-
-
-# copy modulemap
-cp "${BUILD_DIR}/module.modulemap" "${BUILD_DIR}/SDL2.xcframework/ios-arm64/"
-cp "${BUILD_DIR}/module.modulemap" "${BUILD_DIR}/SDL2.xcframework/ios-arm64_x86_64-simulator/"
-cp "${BUILD_DIR}/module.modulemap" "${BUILD_DIR}/SDL2.xcframework/macos-arm64_x86_64/"
-cp "${BUILD_DIR}/module.modulemap" "${BUILD_DIR}/SDL2.xcframework/tvos-arm64/"
-cp "${BUILD_DIR}/module.modulemap" "${BUILD_DIR}/SDL2.xcframework/tvos-arm64_x86_64-simulator/"
