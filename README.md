@@ -45,7 +45,9 @@ let package = Package(
     targets: [
         .target(
             name: "YourTargetName",
-            dependencies: ["SDL2"])
+            dependencies: [
+                .product(name: "SDL", package: "SwiftSDL2")
+            ])
     ]
 )
 
