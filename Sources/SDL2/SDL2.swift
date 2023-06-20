@@ -6,9 +6,9 @@
 //
 
 #if os(Linux) || os(Windows)
-@_exported import CSDL2
+    @_exported import CSDL2
 #else
-@_exported import SDL2
+    @_exported import SDL2
 #endif
 
 extension SDL_KeyCode: Equatable {}

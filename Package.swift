@@ -10,25 +10,25 @@ let package = Package(
     ],
     products: [
         .library(name: "SDL2",
-                 targets: ["SDL"]),
+                 targets: ["SDL2"]),
     ],
     targets: [
-        .target(name: "SDL",
+        .target(name: "SDL2",
                 dependencies: [
-                    .target(name: "SDL2", condition: .when(platforms: [.macOS, .iOS, .tvOS])),
+                    .target(name: "SDL2-apple", condition: .when(platforms: [.macOS, .iOS, .tvOS])),
                     .target(name: "CSDL2", condition: .when(platforms: [.linux])),
                 ]),
-        .testTarget(name: "SDLTests", dependencies: ["SDL"]),
-        .binaryTarget(name: "SDL2", path: "SDL2.xcframework"),
+        .testTarget(name: "SDLTests", dependencies: ["SDL2"]),
+        .binaryTarget(name: "SDL2-apple", path: "SDL2.xcframework"),
         .systemLibrary(
             name: "CSDL2",
             pkgConfig: "sdl2",
-            providers: [ .apt(["libsdl2-dev"]) ]
+            providers: [.apt(["libsdl2-dev"])]
         ),
-        .executableTarget(name: "Minimal", dependencies: ["SDL"], path: "Sources/Demos/Minimal"),
+        .executableTarget(name: "Minimal", dependencies: ["SDL2"], path: "Sources/Demos/Minimal"),
         .executableTarget(
             name: "MetalApp",
-            dependencies: ["SDL"],
+            dependencies: ["SDL2"],
             path: "Sources/Demos/MetalApp",
             swiftSettings: [.define("METAL_ENABLED", .when(platforms: [.macOS]))]
         ),
