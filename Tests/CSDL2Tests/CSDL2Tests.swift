@@ -5,11 +5,10 @@
 //  Created by Christian Treffs on 03.11.19.
 //
 
-import XCTest
 import CSDL2
+import XCTest
 
 final class CSDL2Tests: XCTestCase {
-
     func testVersion() {
         var compiled = SDL_version()
         compiled.major = Uint8(SDL_MAJOR_VERSION)
@@ -29,7 +28,7 @@ final class CSDL2Tests: XCTestCase {
         XCTAssertNotNil(SDL_DestroyWindow.self)
         XCTAssertNotNil(SDL_Quit.self)
     }
-    
+
     func testKeyCodeAvailability() {
         XCTAssertNotNil(SDL_KeyCode.self)
     }

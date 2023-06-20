@@ -10,8 +10,7 @@ import SDL2
 extension SDL_KeyCode: Equatable {}
 extension SDL_KeyCode: Hashable {}
 
-
-@_transparent 
+@_transparent
 public func SDL_Flag<I: FixedWidthInteger, R: RawRepresentable>(_ flag: R) -> I where R.RawValue: FixedWidthInteger {
     I(flag.rawValue)
 }

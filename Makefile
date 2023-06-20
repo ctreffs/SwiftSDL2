@@ -1,47 +1,7 @@
+SWIFT_PACKAGE_VERSION := $(shell swift package tools-version)
+
+# Lint fix and format code.
+.PHONY: lint-fix
 lint-fix:
-	swiftlint fix --format
-
-lintErrorOnly:
-	@swiftlint lint --quiet | grep error
-
-genLinuxTests:
-	swift test --generate-linuxmain
-	swiftlint autocorrect --format --path Tests/
-
-.PHONY: test
-test:
-	swift test
-
-.PHONY: build-release
-build-release:
-	swift build -c release
-
-submodule:
-	git submodule update --init --recursive
-	
-clean:
-	swift package reset
-	rm -rdf .swiftpm/xcode
-	rm -rdf .build/
-	rm Package.resolved
-	rm .DS_Store
-
-cleanArtifacts:
-	swift package clean
-
-latest:
-	swift package update
-
-resolve:
-	swift package resolve
-
-genXcode:
-	swift package generate-xcodeproj --enable-code-coverage --skip-extra-files 
-
-genXcodeOpen: genXcode
-	open *.xcodeproj
-
-precommit: lint genLinuxTests
-
-testReadme:
-	markdown-link-check -p -v ./README.md
+	mint run swiftlint --fix --quiet
+	mint run swiftformat --quiet --swiftversion ${SWIFT_PACKAGE_VERSION} .

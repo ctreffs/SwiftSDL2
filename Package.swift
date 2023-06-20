@@ -6,18 +6,17 @@ let package = Package(
     platforms: [
         .macOS(.v11),
         .iOS(.v13),
-        .tvOS(.v13)
+        .tvOS(.v13),
     ],
     products: [
         .library(name: "SDL2",
-                 targets: ["SDL"])
+                 targets: ["SDL"]),
     ],
     targets: [
         .target(name: "SDL",
                 dependencies: [
-                    .target(name: "SDL2", condition: .when(platforms: [.macOS, .iOS, .tvOS]))
-                ]
-               ),
+                    .target(name: "SDL2", condition: .when(platforms: [.macOS, .iOS, .tvOS])),
+                ]),
         .binaryTarget(name: "SDL2", path: "SDL2.xcframework"),
         .executableTarget(name: "Minimal", dependencies: ["SDL"], path: "Sources/Demos/Minimal"),
         .executableTarget(
@@ -25,6 +24,6 @@ let package = Package(
             dependencies: ["SDL"],
             path: "Sources/Demos/MetalApp",
             swiftSettings: [.define("METAL_ENABLED", .when(platforms: [.macOS]))]
-        )
+        ),
     ]
 )

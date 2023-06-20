@@ -1,11 +1,10 @@
 #if METAL_ENABLED
-import SDL2
-#if canImport(Metal)
-import Metal
-import class QuartzCore.CAMetalLayer
-#endif
+    import SDL2
+    #if canImport(Metal)
+        import Metal
+        import class QuartzCore.CAMetalLayer
+    #endif
 
-if #available(macOS 10.11, *) {
     SDL_Init(SDL_INIT_VIDEO)
     SDL_SetHint(SDL_HINT_RENDER_DRIVER, "metal")
     SDL_InitSubSystem(SDL_INIT_VIDEO)
@@ -36,7 +35,7 @@ if #available(macOS 10.11, *) {
         while SDL_PollEvent(&event) != 0 {
             switch SDL_EventType(event.type) {
             case SDL_QUIT,
-                SDL_KEYUP where event.key.keysym.sym == SDLK_ESCAPE.rawValue:
+                 SDL_KEYUP where event.key.keysym.sym == SDLK_ESCAPE.rawValue:
                 quit = true
 
             default:
@@ -73,8 +72,5 @@ if #available(macOS 10.11, *) {
     SDL_DestroyRenderer(renderer)
     SDL_DestroyWindow(window)
     SDL_Quit()
-} else {
-    // Fallback
-}
 
 #endif
