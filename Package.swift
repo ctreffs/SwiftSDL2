@@ -16,9 +16,15 @@ let package = Package(
         .target(name: "SDL",
                 dependencies: [
                     .target(name: "SDL2", condition: .when(platforms: [.macOS, .iOS, .tvOS])),
+                    .target(name: "CSDL2", condition: .when(platforms: [.linux])),
                 ]),
-        .binaryTarget(name: "SDL2", path: "SDL2.xcframework"),
         .testTarget(name: "SDLTests", dependencies: ["SDL"]),
+        .binaryTarget(name: "SDL2", path: "SDL2.xcframework"),
+        .systemLibrary(
+            name: "CSDL2",
+            pkgConfig: "sdl2",
+            providers: [ .apt(["libsdl2-dev"]) ]
+        ),
         .executableTarget(name: "Minimal", dependencies: ["SDL"], path: "Sources/Demos/Minimal"),
         .executableTarget(
             name: "MetalApp",

@@ -59,6 +59,7 @@ COMMON_HEADER_FILES=(
 "SDL_touch.h"
 "SDL_version.h"
 "SDL_video.h"
+"SDL_vulkan.h"
 "begin_code.h"
 "close_code.h"
 )
@@ -91,8 +92,8 @@ COMMON_LINKED_FRAMEWORKS=(
 "QuartzCore"
 )
 
-MM_OUT_MACOS="module SDL2 {\n    header \"SDL.h\"\n    export *\n    link \"SDL2\"\n"
-MM_OUT_IOS="module SDL2 {\n    header \"SDL.h\"\n    export *\n    link \"SDL2\"\n"
+MM_OUT_MACOS="module SDL2 {\n    header \"SDL.h\"\n    header \"SDL_vulkan.h\"\n    export *\n    link \"SDL2\"\n"
+MM_OUT_IOS="module SDL2 {\n    header \"SDL.h\"\n    header \"SDL_vulkan.h\"\n    export *\n    link \"SDL2\"\n"
 
 for fw in ${COMMON_LINKED_FRAMEWORKS[@]}; do
 	MM_OUT_MACOS+="    link framework \"${fw}\"\n"

@@ -1,5 +1,6 @@
 module SDL2 {
     header "SDL.h"
+    header "SDL_vulkan.h"
     export *
     link "SDL2"
     link framework "AudioToolbox"
