@@ -5,7 +5,11 @@
 //  Created by Christian Treffs on 03.11.19.
 //
 
-import SDL2
+#if os(Linux) || os(Windows)
+@_exported import CSDL2
+#else
+@_exported import SDL2
+#endif
 
 extension SDL_KeyCode: Equatable {}
 extension SDL_KeyCode: Hashable {}
