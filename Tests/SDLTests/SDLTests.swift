@@ -12,17 +12,17 @@ final class SDLTests: XCTestCase {
         SDL_GetVersion(&linked)
 
         #if os(Linux)
-        XCTAssertEqual(compiled.major, 2)
-        XCTAssertEqual(compiled.major, linked.major)
+            XCTAssertEqual(compiled.major, 2)
+            XCTAssertEqual(compiled.major, linked.major)
         #else
-        XCTAssertEqual(compiled.major, 2)
-        XCTAssertEqual(compiled.major, linked.major)
+            XCTAssertEqual(compiled.major, 2)
+            XCTAssertEqual(compiled.major, linked.major)
 
-        XCTAssertEqual(compiled.minor, 26)
-        XCTAssertEqual(compiled.minor, linked.minor)
+            XCTAssertEqual(compiled.minor, 26)
+            XCTAssertEqual(compiled.minor, linked.minor)
 
-        XCTAssertEqual(compiled.patch, 5)
-        XCTAssertEqual(compiled.patch, linked.patch)
+            XCTAssertEqual(compiled.patch, 5)
+            XCTAssertEqual(compiled.patch, linked.patch)
         #endif
     }
 
