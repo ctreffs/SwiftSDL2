@@ -23,7 +23,7 @@ jobs:
         uses: actions/cache@v3.3.1
         with:
           key: windows-x64-vcpkg
-          path: C:/vcpkg/
+          path: C:\vcpkg\installed\x64-windows
 
       - name: Build & Test
         shell: pwsh
@@ -42,9 +42,6 @@ jobs:
           $includedir = (pkgconf --variable includedir sdl2).Trim()
           Write-Output ('#include "' + $includedir + '/SDL2/SDL.h"') > Sources/CSDL2/windows_generated.h
           Write-Output ('#include "' + $includedir + '/SDL2/SDL_vulkan.h"') >> Sources/CSDL2/windows_generated.h
-
-          # clean swift build
-          Remove-Item -Path .\.build -Recurse
 
           # build
           swift build
