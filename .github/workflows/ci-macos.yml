@@ -52,3 +52,16 @@ jobs:
             .build/**/*.dylib
             .build/**/*.dSYM 
             .build/**/*.json
+
+      - name: Zip XCFramework
+        run: |
+          zip -q -9 -r SDL2.xcframework.zip SDL2.xcframework
+          echo "`swift package compute-checksum SDL2.xcframework.zip`" > SDL2.xcframework.checksum.txt
+
+      - name: Publish XCFramework
+        uses: actions/upload-artifact@v3.1.2
+        with:
+          name: build-artifacts-${{ matrix.xcode }}-${{ github.run_id }}
+          path: |
+            SDL2.xcframework.zip
+            SDL2.xcframework.checksum.txt
