@@ -32,11 +32,11 @@ pushd Xcode/SDL
 BUILD_DIR="../../.."
 
 # build archives
-xcodebuild archive ONLY_ACTIVE_ARCH=NO -scheme "Static Library" -project "SDL.xcodeproj" -archivePath "${BUILD_DIR}/SDL-macosx/" -sdk macosx BUILD_LIBRARY_FOR_DISTRIBUTION=YES SKIP_INSTALL=NO
-xcodebuild archive ONLY_ACTIVE_ARCH=NO -scheme "Static Library-iOS" -project "SDL.xcodeproj" -archivePath "${BUILD_DIR}/SDL-iphoneos/" -sdk iphoneos BUILD_LIBRARY_FOR_DISTRIBUTION=YES SKIP_INSTALL=NO
-xcodebuild archive ONLY_ACTIVE_ARCH=NO -scheme "Static Library-iOS" -project "SDL.xcodeproj" -archivePath "${BUILD_DIR}/SDL-iphonesimulator/" -sdk iphonesimulator BUILD_LIBRARY_FOR_DISTRIBUTION=YES SKIP_INSTALL=NO
-xcodebuild archive ONLY_ACTIVE_ARCH=NO -scheme "Static Library-tvOS" -project "SDL.xcodeproj" -archivePath "${BUILD_DIR}/SDL-appletvos/" -sdk appletvos BUILD_LIBRARY_FOR_DISTRIBUTION=YES SKIP_INSTALL=NO
-xcodebuild archive ONLY_ACTIVE_ARCH=NO -scheme "Static Library-tvOS" -project "SDL.xcodeproj" -archivePath "${BUILD_DIR}/SDL-appletvsimulator/" -sdk appletvsimulator BUILD_LIBRARY_FOR_DISTRIBUTION=YES SKIP_INSTALL=NO
+xcodebuild archive ONLY_ACTIVE_ARCH=NO -scheme "Static Library" -project "SDL.xcodeproj" -archivePath "${BUILD_DIR}/SDL-macosx/" -destination "generic/platform=macOS" BUILD_LIBRARY_FOR_DISTRIBUTION=YES SKIP_INSTALL=NO
+xcodebuild archive ONLY_ACTIVE_ARCH=NO -scheme "Static Library-iOS" -project "SDL.xcodeproj" -archivePath "${BUILD_DIR}/SDL-iphoneos/" -destination "generic/platform=iOS"  BUILD_LIBRARY_FOR_DISTRIBUTION=YES SKIP_INSTALL=NO
+xcodebuild archive ONLY_ACTIVE_ARCH=NO -scheme "Static Library-iOS" -project "SDL.xcodeproj" -archivePath "${BUILD_DIR}/SDL-iphonesimulator/" -destination "generic/platform=iOS Simulator"  BUILD_LIBRARY_FOR_DISTRIBUTION=YES SKIP_INSTALL=NO
+xcodebuild archive ONLY_ACTIVE_ARCH=NO -scheme "Static Library-tvOS" -project "SDL.xcodeproj" -archivePath "${BUILD_DIR}/SDL-appletvos/" -destination "generic/platform=tvOS"  BUILD_LIBRARY_FOR_DISTRIBUTION=YES SKIP_INSTALL=NO
+xcodebuild archive ONLY_ACTIVE_ARCH=NO -scheme "Static Library-tvOS" -project "SDL.xcodeproj" -archivePath "${BUILD_DIR}/SDL-appletvsimulator/" -destination "generic/platform=tvOS Simulator" BUILD_LIBRARY_FOR_DISTRIBUTION=YES SKIP_INSTALL=NO
 
 popd
 popd
