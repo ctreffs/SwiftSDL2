@@ -69,7 +69,7 @@ depending on your platform.
 A minimal example is located at [Sources/Demos/Minimal](Sources/Demos/Minimal).   
 
 ```swift
-import SDL2
+import SDL
 
 // Initialize SDL video systems
 guard SDL_Init(SDL_INIT_VIDEO) == 0 else {

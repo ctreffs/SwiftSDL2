@@ -1,4 +1,4 @@
-@testable import SDL2
+@testable import SDL
 import XCTest
 
 final class SDLTests: XCTestCase {

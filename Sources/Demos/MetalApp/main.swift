@@ -1,5 +1,5 @@
 #if METAL_ENABLED
-    import SDL2
+    import SDL
     #if canImport(Metal)
         import Metal
         import class QuartzCore.CAMetalLayer

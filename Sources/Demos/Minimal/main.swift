@@ -1,4 +1,4 @@
-import SDL2
+import SDL
 
 // Initialize SDL video systems
 guard SDL_Init(SDL_INIT_VIDEO) == 0 else {
