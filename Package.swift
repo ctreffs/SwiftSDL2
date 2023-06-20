@@ -5,28 +5,37 @@ let package = Package(
     name: "SDL2",
     products: [
         .library(name: "SDL2",
-                 targets: ["SDL2"]),
-        .executable(name: "MinimalApp",
-                    targets: ["Minimal"]),
-        .executable(name: "MetalApp",
-                    targets: ["MetalApp"])
+                 targets: ["SDL"])
     ],
     targets: [
-        .systemLibrary(
-            name: "CSDL2",
-            pkgConfig: "sdl2",
-            providers: [
-                .brew(["sdl2"]),
-                .apt(["libsdl2-dev"])
-        ]),
-        .target(name: "SDL2", dependencies: ["CSDL2"]),
-        .executableTarget(name: "Minimal", dependencies: ["SDL2"], path: "Sources/Demos/Minimal"),
+        .target(name: "SDL",
+                dependencies: [.target(name: "SDL2")],
+                linkerSettings: [
+                    .linkedFramework("Foundation"),
+                    .linkedFramework("AVFoundation"),
+                    .linkedFramework("AudioToolbox"),
+                    .linkedFramework("CoreGraphics"),
+                    .linkedFramework("CoreHaptics"),
+                    .linkedFramework("CoreAudio"),
+                    .linkedFramework("GameController"),
+                    .linkedFramework("QuartzCore"),
+                    .linkedFramework("CoreMotion"),
+                    .linkedFramework("IOKit"),
+                    .linkedFramework("Metal"),
+                    .linkedFramework("OpenGLES", .when(platforms: [.iOS, .tvOS])),
+                    .linkedFramework("Cocoa", .when(platforms: [.macOS])),
+                    .linkedFramework("UIKit", .when(platforms: [.iOS, .tvOS])),
+                    .linkedFramework("ForceFeedback", .when(platforms: [.macOS])),
+                    .linkedFramework("Carbon", .when(platforms: [.macOS]))
+                ]
+               ),
+        .binaryTarget(name: "SDL2", path: "SDL2.xcframework"),
+        .executableTarget(name: "Minimal", dependencies: ["SDL"], path: "Sources/Demos/Minimal"),
         .executableTarget(
             name: "MetalApp",
-            dependencies: ["SDL2"],
+            dependencies: ["SDL"],
             path: "Sources/Demos/MetalApp",
             swiftSettings: [.define("METAL_ENABLED", .when(platforms: [.macOS]))]
-        ),
-        .testTarget(name: "CSDL2Tests", dependencies: ["CSDL2"])
+        )
     ]
 )
