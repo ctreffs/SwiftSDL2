@@ -3,30 +3,19 @@ import PackageDescription
 
 let package = Package(
     name: "SDL2",
+    platforms: [
+        .macOS(.v11),
+        .iOS(.v13),
+        .tvOS(.v13)
+    ],
     products: [
         .library(name: "SDL2",
                  targets: ["SDL"])
     ],
     targets: [
         .target(name: "SDL",
-                dependencies: [.target(name: "SDL2")],
-                linkerSettings: [
-                    .linkedFramework("Foundation"),
-                    .linkedFramework("AVFoundation"),
-                    .linkedFramework("AudioToolbox"),
-                    .linkedFramework("CoreGraphics"),
-                    .linkedFramework("CoreHaptics"),
-                    .linkedFramework("CoreAudio"),
-                    .linkedFramework("GameController"),
-                    .linkedFramework("QuartzCore"),
-                    .linkedFramework("CoreMotion"),
-                    .linkedFramework("IOKit"),
-                    .linkedFramework("Metal"),
-                    .linkedFramework("OpenGLES", .when(platforms: [.iOS, .tvOS])),
-                    .linkedFramework("Cocoa", .when(platforms: [.macOS])),
-                    .linkedFramework("UIKit", .when(platforms: [.iOS, .tvOS])),
-                    .linkedFramework("ForceFeedback", .when(platforms: [.macOS])),
-                    .linkedFramework("Carbon", .when(platforms: [.macOS]))
+                dependencies: [
+                    .target(name: "SDL2", condition: .when(platforms: [.macOS, .iOS, .tvOS]))
                 ]
                ),
         .binaryTarget(name: "SDL2", path: "SDL2.xcframework"),
