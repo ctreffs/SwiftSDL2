@@ -15,12 +15,12 @@ let package = Package(
     targets: [
         .target(name: "SDL",
                 dependencies: [
-                    .target(name: "SDL2-apple", condition: .when(platforms: [.macOS, .iOS, .tvOS])),
+                    .target(name: "SDL2", condition: .when(platforms: [.macOS, .iOS, .tvOS])),
                     .target(name: "CSDL2", condition: .when(platforms: [.linux, .windows])),
                 ],
                 path: "Sources/SDL2"),
         .testTarget(name: "SDLTests", dependencies: ["SDL"]),
-        .binaryTarget(name: "SDL2-apple", path: "SDL2.xcframework"),
+        .binaryTarget(name: "SDL2", path: "SDL2.xcframework"),
         .systemLibrary(
             name: "CSDL2",
             pkgConfig: "sdl2",
