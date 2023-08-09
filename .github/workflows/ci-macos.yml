@@ -67,7 +67,7 @@ jobs:
             SDL2.xcframework.checksum.txt
 
   macos-test-build-release-xcode-legacy:
-    runs-on: macos-12
+    runs-on: macos-13
     strategy:
       matrix:
         xcode: ["13.4.1"]
