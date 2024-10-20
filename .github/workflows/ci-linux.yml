@@ -17,7 +17,7 @@ jobs:
       image: swift:${{ matrix.swift }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v3.5.3
+        uses: actions/checkout@v4
 
       - name: APT cache
         uses: actions/cache@v3.3.1
@@ -39,8 +39,27 @@ jobs:
           apt update
           apt install -y libsdl2-dev
 
-      - name: Test
-        run: swift test
-
-      - name: Build Release
-        run: swift build -c release
+      - name: Build & Test
+        run: swift test -c release
+        
+      - name: Upload artifacts
+        if: always()
+        uses: actions/upload-artifact@v4.4.3
+        with:
+          name: build-artifacts-linux-${{ matrix.swift }}-${{ github.run_id }}
+          path: |
+            .build/*.yaml
+            .build/*.xml
+            .build/*.json
+            .build/*.txt
+            .build/**/*.json
+            .build/**/*.txt
+            .build/**/*.a
+            .build/**/*.dSYM
+            .build/**/*.gdb
+            .build/**/*.xctest
+            .build/**/*.bundle
+            .build/**/MetalApp
+            .build/**/Minimal
+          if-no-files-found: warn
+          include-hidden-files: true

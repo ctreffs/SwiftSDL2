@@ -11,13 +11,14 @@ jobs:
   windows-test-build-release:
     runs-on: windows-latest
     steps:
-      - uses: compnerd/gha-setup-swift@main
+      - name: Setup
+        uses: compnerd/gha-setup-swift@v0.2.3
         with:
-          branch: swift-5.8-release
-          tag: 5.8-RELEASE
+          branch: swift-5.10-release
+          tag: 5.10-RELEASE
 
       - name: Checkout
-        uses: actions/checkout@v3.5.3
+        uses: actions/checkout@v4
 
       - name: Cache vcpkg
         uses: actions/cache@v3.3.1
@@ -59,3 +60,19 @@ jobs:
 
           # test
           swift test
+
+      - name: Upload test artifacts
+        if: failure()
+        uses: actions/upload-artifact@v4.4.3
+        with:
+          name: test-artifacts-windows-${{ github.run_id }}
+          path: |
+            .build/*.yaml
+            .build/*.xml
+            .build/*.json
+            .build/*.txt
+            .build/**/*.xctest
+            .build/**/*.json
+            .build/**/*.txt
+          if-no-files-found: warn
+          include-hidden-files: true
