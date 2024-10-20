@@ -61,8 +61,8 @@ jobs:
           # test
           swift test
 
-      - name: Upload test artifacts
-        if: failure()
+      - name: Upload artifacts
+        if: always()
         uses: actions/upload-artifact@v4.4.3
         with:
           name: test-artifacts-windows-${{ github.run_id }}
@@ -71,8 +71,16 @@ jobs:
             .build/*.xml
             .build/*.json
             .build/*.txt
-            .build/**/*.xctest
             .build/**/*.json
             .build/**/*.txt
+            .build/**/*.a
+            .build/**/*.lib
+            .build/**/*.pdb
+            .build/**/*.dSYM
+            .build/**/*.gdb
+            .build/**/*.xctest
+            .build/**/*.bundle
+            .build/**/MetalApp
+            .build/**/Minimal
           if-no-files-found: warn
           include-hidden-files: true
