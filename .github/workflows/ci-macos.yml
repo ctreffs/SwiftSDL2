@@ -27,7 +27,7 @@ jobs:
 
       - name: Upload artifacts
         if: always()
-        uses: actions/upload-artifact@v4.4.3
+        uses: actions/upload-artifact@v4.6.0
         with:
           name: build-artifacts-macOS-${{ matrix.xcode }}-${{ github.run_id }}
           path: |
