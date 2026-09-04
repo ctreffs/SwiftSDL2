@@ -15,7 +15,7 @@ jobs:
         xcode: ["15.4", "16.0"]
     steps:
       - name: Checkout
-        uses: actions/checkout@v4.2.1
+        uses: actions/checkout@v4.4.0
       
       - name: Select Xcode ${{ matrix.xcode }}
         run: sudo xcode-select -s /Applications/Xcode_${{ matrix.xcode }}.app
@@ -27,7 +27,7 @@ jobs:
 
       - name: Upload artifacts
         if: always()
-        uses: actions/upload-artifact@v4.4.3
+        uses: actions/upload-artifact@v4.6.2
         with:
           name: build-artifacts-macOS-${{ matrix.xcode }}-${{ github.run_id }}
           path: |
